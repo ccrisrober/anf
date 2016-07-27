@@ -26,11 +26,11 @@ app.use( bodyParser.json() );
 app.use(compression())
 // log every request to the console
 app.use(morgan('dev'));
+// HTTP Security Headers
+app.use( helmet() );
 
 app.use( auth.initialize() );
 
-
-app.use( helmet() );
 
 app.use( expressValidator( require("./config/validations") ) );
 

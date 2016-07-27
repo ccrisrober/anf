@@ -10,11 +10,23 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			all: ["Gruntfile.js", "api/**/*.js"],
+			options: {
+				jshintrc: true
+			}
 		},
 
 		nodemon: {
 			dev: {
 				script: "app.js"
+			}
+		},
+
+		concurrent: {
+			dev: {
+				tasks: ['nodemon', 'watch'],
+				options: {
+					logConcurrentOutput: true
+				}
 			}
 		},
 
@@ -42,9 +54,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.registerTask("watch", ["watch:js"]); // TODO: JSHINT NO VA D:
+	grunt.loadNpmTasks('grunt-concurrent');
+	grunt.registerTask("watch", ["watch:js"]);
 
-	grunt.loadNpmTasks('grunt-apidoc')
+	grunt.registerTask("hint", ["jshint"]);
+
+	grunt.registerTask('default', ['concurrent']);
+
+	grunt.loadNpmTasks('grunt-apidoc');
 	grunt.registerTask("server", ["apidoc:myapp", "nodemon"]);
 
 	grunt.loadNpmTasks('grunt-mocha-istanbul');

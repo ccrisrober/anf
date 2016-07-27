@@ -26,4 +26,4 @@ exports.upload = function(req, res) {
 
 exports.hello = function(req, res) {
 	res.send("hello");
-}
+};
