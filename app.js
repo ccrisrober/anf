@@ -8,7 +8,8 @@ var config = require("./config/application"),
     helmet = require("helmet"),
     path = require("path"),
 	expressValidator = require('express-validator'),
-
+	compression = require('compression'),
+	morgan = require('morgan'), 		// Logging
 	auth = require("./config/passport")();
 
 // Set base path in global system
@@ -20,6 +21,11 @@ var router = express.Router();
 
 app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( bodyParser.json() );
+
+// compress all requests
+app.use(compression())
+// log every request to the console
+app.use(morgan('dev'));
 
 app.use( auth.initialize() );
 
