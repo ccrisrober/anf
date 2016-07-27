@@ -3,6 +3,7 @@
 exports = module.exports = function(app) {
 	app.get("/", require("./api/controllers/PruebasController").index);
 	app.post("/file", require("./api/controllers/PruebasController").upload);
+	app.get("/hello", require("./api/controllers/PruebasController").hello);
 
 	// UserController
 	app.post("/users/authenticate", require("./api/controllers/UserController").authenticate);

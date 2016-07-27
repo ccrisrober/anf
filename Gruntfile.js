@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 				src: "tests", // directory, not files
 				options: {
 					coverageFolder: "coverage",
-					mask: "/**/*.spec.js",
+					mask: "./**/*.spec.js",
 					root: "api/",
 					reportFormats: ["html"]
 				}
@@ -47,8 +47,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-apidoc')
 	grunt.registerTask("server", ["apidoc:myapp", "nodemon"]);
 
-  	// Mocha tests  
-  	grunt.loadNpmTasks('grunt-mocha-istanbul');
+	grunt.loadNpmTasks('grunt-mocha-istanbul');
 
-	grunt.registerTask("test", ["mocha_istanbul:coverage"]);
+	// Adding test task enabling "grunt test" command
+	grunt.registerTask('test', [  
+		'mocha_istanbul:coverage'
+	]);
 };

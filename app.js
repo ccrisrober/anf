@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Documentation route
 app.use("/doc", express.static(__dirname + "/apidoc"));
+app.use("/coverage", express.static(__dirname + "/coverage"));
 
 // Main route
 router.all('/', function (req, res, next) {  
