@@ -1,0 +1,21 @@
+{
+  "name": "nodeserver",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "maldicion069 <ccrisrober@gmail.com>"
+  ],
+  "directory": "loles/bower_components",
+  "license": "MIT",
+  "homepage": "https://github.com/maldicion069/NodeServer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0"
+  }
+}
