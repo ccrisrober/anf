@@ -17,5 +17,4 @@ exports = module.exports = function(app) {
 	app.get("/term_use/person/:lang", require("./api/controllers/FaqController").term_use_person);
 	app.get("/privacy_policy/company/:lang", require("./api/controllers/FaqController").privacy_policy_company);
 	app.get("/privacy_policy/person/:lang", require("./api/controllers/FaqController").privacy_policy_person);
-
-}
+};

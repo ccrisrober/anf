@@ -10,7 +10,10 @@ var User = ORM.Model.extend({
 		this.on("saving", function(model, attrs, opts) {
 			//
 		});
-	},
+	}, 
+	initialize: function(attrs, opts) {
+    	this.on('saving', this.validateSave);
+  	},
 	hidden: ["password"]
 	/*,
 	invoices: function() {
