@@ -20,7 +20,7 @@ var router = express.Router();
 
 app.set("view engine", "pug");
 // Re-asign views direcotry
-app.set("views", __dirname + "/resource/views");
+app.set("views", __dirname + "/resources/views");
 
 app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( bodyParser.json() );

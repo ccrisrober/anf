@@ -31,6 +31,20 @@ module.exports = function(grunt) {
 			}
 		},
 
+		stylus: {
+			options: {
+				linenos: true,
+				compress: false
+	        },
+	        files: [{
+	      		expand: true,
+	          	cwd: 'source',
+	          	src: [ '**/*.styl' ],
+	          	dest: 'build',
+	          	ext: '.css'
+	        }]
+		},
+
 		mocha_istanbul: {
 			coverage: {
 				src: "tests", // directory
@@ -47,12 +61,6 @@ module.exports = function(grunt) {
 			myapp: {
 				src: "api/controllers/",
 				dest: "apidoc/"
-			}
-		},
-
-		less: {
-			options: {
-				compress: true
 			}
 		},
 
@@ -75,6 +83,9 @@ module.exports = function(grunt) {
 
 
 	});
+
+	grunt.loadNpmTasks('grunt-contrib-stylus');
+	grunt.registerTask("client", ["stylus"]);
 
 	// Nodemon
 	grunt.loadNpmTasks('grunt-nodemon');
