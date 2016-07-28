@@ -12,11 +12,18 @@ var User = require(__base + "./api/models/User");
  * @apiSuccess {String} lastname  Lastname of the User.
  */
 exports.index = function(req, res) {
-	User.collection().fetch().then(function(user) {
+	res.render(
+		"index",
+		{
+			title: "Hey listen!",
+			message: "TLOZ Orarine of Time"
+		}
+	);
+	/*User.collection().fetch().then(function(user) {
 		res.json(user);
 	}).catch(function(err) {
 		res.json(err);
-	});
+	});*/
 };
 
 exports.upload = function(req, res) {

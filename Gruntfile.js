@@ -1,3 +1,4 @@
+// TODO: Añadir knex a servicios grunt
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),

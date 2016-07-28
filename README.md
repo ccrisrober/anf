@@ -5,7 +5,7 @@ Another NodeJS Framework implemented with Express, Grunt and Knex.
 
 | On The Server | On The Client  | Development |
 | ------------- | -------------- | ----------- |
-| Express       | ( in process ) | Grunt       |
+| Express       | Pug			 | Grunt       |
 | Knex          |  	    		 | ApiDoc      |
 | Bookshelf     |  	    		 | Mocha       |
 | 	            |  	    		 | Istanbul    |
@@ -20,3 +20,5 @@ $ npm install
 ```bash
 $ grunt server
 ```
+## License
+MIT

@@ -18,6 +18,9 @@ global.__base = __dirname + '/';
 var app = express();
 var router = express.Router();
 
+app.set("view engine", "pug");
+// Re-asign views direcotry
+app.set("views", __dirname + "/resource/views");
 
 app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( bodyParser.json() );
