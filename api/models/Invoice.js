@@ -1,14 +1,15 @@
-/*"use strict";
+"use strict";
 
-var Bookshelf = require(__base + "./config/database.js");
+var ORM = require(__base + "./config/database.js");
 
 require("./User");
-var Invoice = Bookshelf.Model.extend({
+var Invoice = ORM.Model.extend({
 	tableName: "invoices",
-	hasTimestamps: true,
+	hasTimestamps: true/*,
 	user: function() {
 		return this.belongsTo("User");
-	}
+	}*/
 });
+module.exports = Invoice;
 
-module.exports = Bookshelf.model("Invoice", Invoice);*/
+//module.exports = Bookshelf.model("Invoice", Invoice);*/

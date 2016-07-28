@@ -106,6 +106,7 @@ app.post("/token", function(req, res) {
 });
 
 
+require("./config/model");
 require("./routes")(app);
 
 // Handle 404

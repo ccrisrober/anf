@@ -19,4 +19,6 @@ var User = ORM.Model.extend({
 	}*/
 });
 
-module.exports = ORM.model("User", User);
+module.exports = User;
+
+//module.exports = ORM.model("User", User);
