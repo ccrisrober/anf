@@ -48,8 +48,9 @@ app.server = http.createServer(app);
 app.disable('x-powered-by');
 app.set("port", config.port);
 
-app.use(router);  
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(router);
+app.use(express.static(__dirname + '/public'));
+app.use('/',  express.static(__dirname + '/vendor'));
 
 // Documentation route
 app.use("/doc", express.static(__dirname + "/apidoc"));

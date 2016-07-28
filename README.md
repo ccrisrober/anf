@@ -7,7 +7,7 @@ Another NodeJS Framework implemented with Express, Grunt and Knex.
 | ------------- | -------------- | ----------- |
 | Express       | Pug			 | Grunt       |
 | Knex          | jQuery   		 | ApiDoc      |
-| Bookshelf     |  	    		 | Mocha       |
+| Bookshelf     | ReactJS		 | Mocha       |
 | 	            |  	    		 | Istanbul    |
 |				|				 | Bower	   |
 

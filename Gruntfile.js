@@ -84,6 +84,8 @@ module.exports = function(grunt) {
 
 	});
 
+	grunt.loadNpmTasks('grunt-notify');	// TODO: https://github.com/dylang/grunt-notify
+
 	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.registerTask("client", ["stylus"]);
 

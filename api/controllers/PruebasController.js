@@ -34,3 +34,9 @@ exports.upload = function(req, res) {
 exports.hello = function(req, res) {
 	res.send("hello");
 };
+
+exports.todo = function(req, res) {
+	res.render(
+		"todo"
+	);
+};
