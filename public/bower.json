@@ -1,0 +1,14 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/maldicion069/NodeServer",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

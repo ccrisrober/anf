@@ -36,6 +36,9 @@ app.use( expressValidator( require("./config/validations") ) );
 
 app.config = config;
 
+app.utility = {};
+app.utility.workflow = require('./utils/workflow');
+
 app.server = http.createServer(app);
 
 // settings
@@ -119,6 +122,8 @@ app.use(function(error, req, res, next) {
 	console.log(error);
   	res.status(500).send({status:500, message: 'internal error', type:'internal'}); 
 });
+
+// TODO: https://github.com/anotheri/express-routescan
 
 app.server.listen(app.config.port, function() {
 	console.log("Server is running at " + config.port + " port");

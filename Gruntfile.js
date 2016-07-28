@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 
 		mocha_istanbul: {
 			coverage: {
-				src: "tests", // directory, not files
+				src: "tests", // directory
 				options: {
 					coverageFolder: "coverage",
 					mask: "./**/*.spec.js",
@@ -47,7 +47,32 @@ module.exports = function(grunt) {
 				src: "api/controllers/",
 				dest: "apidoc/"
 			}
+		},
+
+		less: {
+			options: {
+				compress: true
+			}
+		},
+
+		clean: {
+			js: {
+				src: [
+					"public/js/**/*..min.js",
+					"public/js/**/*..min.js.map"
+				]
+			},
+			css: {
+				src: [
+					"public/css/**/*.min.css"
+				]
+			},
+			vendor: {
+				src: ["public/vendor/**"]
+			}
 		}
+
+
 	});
 
 	// Nodemon
@@ -63,6 +88,7 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-apidoc');
 	grunt.registerTask("server", ["apidoc:myapp", "nodemon"]);
+	grunt.registerTask("serve", ["apidoc:myapp", "nodemon"]);
 
 	grunt.loadNpmTasks('grunt-mocha-istanbul');
 
