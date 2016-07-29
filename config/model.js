@@ -2,6 +2,7 @@
 
 var ORM = require(__base + "./config/database.js");
 ORM.plugin("visibility");
+ORM.plugin("registry");
 
 // Register all models
 require("fs").readdirSync(__base + "./api/models").forEach(function(modelName) {

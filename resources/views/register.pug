@@ -1,0 +1,22 @@
+doctype html
+html
+	head
+		title Register View
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+	body
+		if errors
+			p= errors
+		form(role="form", action="/register", method="post")
+			label Email:
+			br
+			input(type="text", name="email", placeholder="Enter email")
+			br
+			label Username:
+			br
+			input(type="text", name="username", placeholder="Enter username")
+			br
+			label Password:
+			br
+			input(type="password", name="password", placeholder="Enter password")
+			br
+			button(type="submit") Register

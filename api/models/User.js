@@ -5,20 +5,22 @@ var ORM = require(__base + "./config/database.js");
 //require('./Invoice');
 var User = ORM.Model.extend({
 	tableName: "user",
-	constructor: function() {
-		ORM.Model.apply(this, arguments);
-		this.on("saving", function(model, attrs, opts) {
-			//
-		});
-	}, 
 	initialize: function(attrs, opts) {
-    	this.on('saving', this.validateSave);
-  	},
+  	console.log(attrs);
+  	console.log(opts);
+  	//this.on('saving', this.validateSave);
+	},
+	create: function(data, opts) {
+		return this.forge(data).save(null, opts);
+	},
 	hidden: ["password"]
-	/*,
-	invoices: function() {
-		return this.hasMany("Invoice");
-	}*/
+}, {
+  login: function(email, password) {
+    return this.forge({
+      email: email
+      // TODO: password
+    }).fetch();
+  }
 });
 
 module.exports = User;

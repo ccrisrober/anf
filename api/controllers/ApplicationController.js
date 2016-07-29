@@ -1,7 +1,9 @@
 "use strict";
 
 exports.home = function(req, res) {
-
+	return res.render(
+		"home"
+	);
 };
 
 // TODO: Mover a otro sitio

@@ -1,0 +1,16 @@
+doctype html
+html
+	head
+		title Login View
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+	body
+		if errors
+			p= errors
+		form(role="form", action="/login", method="post")
+			input(type="text", name="email", placeholder="Enter email")
+			br
+			input(type="password", name="password", placeholder="Enter password")
+			br
+			button(type="submit") Login
+			br
+			a(href="/register") Register
