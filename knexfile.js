@@ -4,7 +4,7 @@ module.exports = {
 	test: {
 		client: 'mysql',
 		connection: {
-			database: 'nodejunglear2T',
+			database: 'nodebd2T',
 			user:     'root',
 			password: ''
 		},
@@ -18,7 +18,7 @@ module.exports = {
 	development: {
 		client: 'mysql',
 		connection: {
-			database: 'nodejunglear2D',
+			database: 'nodebd2D',
 			user:     'root',
 			password: ''
 		},

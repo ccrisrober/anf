@@ -3,10 +3,10 @@
 const fs = require('fs');
 
 module.exports  = {
-	domainName: 'junglear.com',
+	domainName: 'mydomain.com',
     keySelector: 'emailkey',
     privateKey: fs.readFileSync('/etc/pmta/private_email_key.pem'),
-    from: 'Junglear <no-reply@junglear.com>',
+    from: 'MyDomain <no-reply@mydomain.com>',
 
     debug: true,
 

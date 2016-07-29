@@ -13,7 +13,7 @@ Another NodeJS Framework implemented with Express, Grunt and Knex.
 
 ## Installation
 ```bash
-$ git clone git@github.com:maldicion069/nodeserver.git && cd ./nodeserver
+$ git clone git@github.com:maldicion069/anf.git && cd ./anf
 $ npm install
 ```
 

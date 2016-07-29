@@ -1,6 +1,6 @@
 "use strict";
 
-exports.get_company_faqs = function(req, res) {
+exports.trololo_lang = function(req, res) {
 	var workflow = req.app.utility.workflow(req, res);
 
 	workflow.on("validate", function() {
@@ -23,24 +23,4 @@ exports.get_company_faqs = function(req, res) {
 
     
     workflow.emit("validate");
-};
-
-exports.get_person_faqs = function(req, res) {
-
-};
-
-exports.term_use_company = function(req, res) {
-
-};
-
-exports.term_use_person = function(req, res) {
-
-};
-
-exports.privacy_policy_company = function(req, res) {
-
-};
-
-exports.privacy_policy_person = function(req, res) {
-
 };

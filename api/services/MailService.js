@@ -6,7 +6,7 @@ exports.send_email = function (email_to, email_subject, email_content) {
     if (!email_to || !email_subject || !email_content) {
         console.log("Invalid send_email parameters");
     } else {
-        try {
+        /*ry {
             var transporter = nodemailer.createTransport({ debug : config.debug });
             transporter.use('stream', dkim.signer({
                 domainName: config.domainName,
@@ -24,6 +24,6 @@ exports.send_email = function (email_to, email_subject, email_content) {
         } catch (e) {
             //console.log(e);
             console.log(config.error);
-        }
+        }*/
     }
 };
