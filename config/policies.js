@@ -1,3 +1,18 @@
+module.exports.ensureAuthenticated = function(req, res, next) {
+	// TODO
+	return next();
+};
+module.exports.ensureAdmin = function(req, res, next) {
+	if(req.user.canPlayRoleOf("admin")) {
+		return next();
+	}
+	// TODO: Send HTTP No permisos
+};
+module.exports.ensureUser = function(req, res, next) {
+	// TODO
+	return next();
+};
+
 module.exports.checkToken = function(req, res, next) {
 	// Se busca el token en el header o en los parámetros de la petición. Si es en el header se tiene que llamar 'x-access-token'
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];

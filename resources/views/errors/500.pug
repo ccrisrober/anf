@@ -1,0 +1,9 @@
+html
+	head
+		title Server error
+	body
+		h1 Server error
+		p
+			Sorry, something went wrong.
+		if err.stack
+			pre #{err.stack}

@@ -16,7 +16,7 @@ exports.index = function(req, res) {
 		"index",
 		{
 			title: "Hey listen!",
-			message: "TLOZ Orarine of Time"
+			message: "TLOZ Ocarine of Time"
 		}
 	);
 	/*User.collection().fetch().then(function(user) {
@@ -25,8 +25,8 @@ exports.index = function(req, res) {
 		res.json(err);
 	});*/
 };
-
 exports.upload = function(req, res) {
+	// TODO: http://blog.robertonodi.me/simple-image-upload-with-express/
 	var upload = require(__base + "./api/services/UploadService");
 	return upload.upload_file(req, res, "pepe");
 };

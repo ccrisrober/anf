@@ -1,5 +1,5 @@
 "use strict";
-
+// TODO: https://www.npmjs.com/package/node-sender
 var config = require("./config/application"),
 	express = require("express"),
 	bodyParser = require("body-parser"),
@@ -31,6 +31,11 @@ app.use(compression())
 app.use(morgan('dev'));
 // HTTP Security Headers
 app.use( helmet() );
+// TODO
+//	* https://github.com/helmetjs/hide-powered-by
+//	* https://github.com/helmetjs/x-xss-protection
+//	* https://github.com/helmetjs/frameguard
+//	* https://github.com/helmetjs/csp
 
 app.use( auth.initialize() );
 
@@ -45,7 +50,6 @@ app.utility.workflow = require('./utils/workflow');
 app.server = http.createServer(app);
 
 // settings
-app.disable('x-powered-by');
 app.set("port", config.port);
 
 app.use(router);
@@ -117,15 +121,16 @@ require("./config/model");
 require("./routes")(app);
 
 // Handle 404
-app.use(function(req, res) {
-  	res.status(404).send({status:404, message: 'page not found', type:'not found'}); 
-});
+//app.use(function(req, res) {
+//  	res.status(404).send({status:404, message: 'page not found', type:'not found'}); 
+//});
   
 // Handle 500
-app.use(function(error, req, res, next) {
-	console.log(error);
-  	res.status(500).send({status:500, message: 'internal error', type:'internal'}); 
-});
+app.use(require('./api/controllers/ApplicationController').http500);
+//app.use(function(error, req, res, next) {
+//	console.log(error);
+//  	res.status(500).send({status:500, message: 'internal error', type:'internal'}); 
+//});
 
 // TODO: https://github.com/anotheri/express-routescan
 
