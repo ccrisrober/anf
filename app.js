@@ -129,6 +129,38 @@ app.use(function(error, req, res, next) {
 
 // TODO: https://github.com/anotheri/express-routescan
 
-app.server.listen(app.config.port, function() {
-	console.log("Server is running at " + config.port + " port");
-});
+app.server.listen(app.config.port);
+
+function onError(error) {
+	if (error.syscall !== "listen") {
+    	throw error;
+  	}
+
+  	var bind = typeof port === "string"
+    	? "Pipe " + port
+    	: "Port " + port;
+
+	// handle specific listen errors with friendly messages
+	switch (error.code) {
+		case "EACCES":
+			console.error(bind + " requires elevated privileges");
+			process.exit(1);
+			break;
+		case "EADDRINUSE":
+			console.error(bind + " is already in use");
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+};
+function onListening() {
+	var addr = app.server.address();
+	var bind = typeof addr === "string"
+		? "pipe " + addr
+		: addr.port + " port";
+	console.log("Server is running at " + bind);
+};
+
+app.server.on("error", onError);
+app.server.on("listening", onListening);
