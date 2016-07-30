@@ -1,12 +1,12 @@
 doctype html
 html(lang="en")
 	head
-		title= pageTitle
+		title TODO LIST
 	body
-		section.todoapp
-		footer.info
-			p Double-click to edit a todo
-			p
-				a(href="http://todomvc.com") TodoMVC
-		script(src="react/react.min.js")
-		a(href="http://www.tutorialspoint.com/reactjs/reactjs_environment_setup.htm", target="_link") React Tutorial
+		form(role="form", action="/login", method="post")
+			input(type="text", name="email", placeholder="Enter email")
+			br
+			button(type="submit") Send
+		ul
+			li
+				todos

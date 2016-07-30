@@ -2,7 +2,7 @@
 
 var ORM = require(__base + "./config/database.js");
 
-//require('./Invoice');
+require('./Todo');
 var User = ORM.Model.extend({
 	tableName: "user",
 	initialize: function(attrs, opts) {
@@ -13,7 +13,10 @@ var User = ORM.Model.extend({
 	create: function(data, opts) {
 		return this.forge(data).save(null, opts);
 	},
-	hidden: ["password"]
+	hidden: ["password"],
+  todos: function() {
+    return this.hasMany("todo");
+  }
 }, {
   login: function(email, password) {
     return this.forge({

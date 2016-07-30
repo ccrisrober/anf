@@ -36,34 +36,43 @@ exports.register = function(req, res) {
 };
 exports.register_form = function(req, res) {
 	console.log(req.body);
-	if(!req.body.username || !req.body.email || !req.body.password) {
-		return res.render(
+	req.assert('username', 'can not be empty').notEmpty();
+    req.assert('username', 'must be string').isString();
+    
+	req.assert('email', 'can not be empty').notEmpty();
+    req.assert('email', 'must be string').isEmail();
+    
+	req.assert('password', 'can not be empty').notEmpty();
+    req.assert('password', 'must be string').isString();
+    var errors = req.validationErrors();
+
+    if (errors) {
+    	return res.render(
 			"register",
 			{
-				errors: "Please enter username, email and password"
+				errors: errors
 			}
 		)
-	} else {
-		var user = new User({
-			email: req.body.email,
-			password: req.body.password,
-			name: req.body.username
+    }
+
+	var user = new User({
+		email: req.body.email,
+		password: req.body.password,
+		name: req.body.username
+	});
+	user.save()
+		.then(function(user) {
+			return res.redirect("/login");
+			//res.json({  error: false, data: { id: user.get("id") } });
+		})
+		.catch(function(err) {
+			return res.render(
+				"register",
+				{
+					errors: err.message
+				}
+			);
 		});
-		user.save()
-			.then(function(user) {
-				res.json({ 
-					error: false, data: { id: user.get("id") } 
-				});
-			})
-			.catch(function(err) {
-				return res.render(
-					"register",
-					{
-						errors: err.message
-					}
-				);
-			});
-	}
 };
 exports.logout = function(req, res) {
 	req.logout(); // TODO: Así de fácil??

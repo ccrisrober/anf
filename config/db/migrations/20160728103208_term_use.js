@@ -5,7 +5,6 @@ exports.up = function(knex, Promise) {
 		table.string("lang");
 		table.string("type");
 		table.text("content");
-		//table.string('type').primary();
 	});
 };
 

@@ -9,20 +9,15 @@ exports.seed = function(knex, Promise) {
           email: "ccrisrober@gmail.com",
           password: "12345678",
           name: "maldicion069"
-        }),
-        knex('user').insert({
-          email: "pepito@gmail.com",
-          password: "12345678",
-          name: "pepito"
         })
       ];
-      for(var i = 0; i < 10; i++) {
+      /*for(var i = 0; i < 10; i++) {
         seed.push(knex("user").insert({
           email: faker.internet.email(),
           password: "12345678",
           name: faker.name.findName()
         }));
-      }
+      }*/
       return Promise.all(seed);
     });
 };

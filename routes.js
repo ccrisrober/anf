@@ -22,6 +22,7 @@ exports = module.exports = function(app) {
 	// ApplicationController
 	//app.get("/api/user/home", policies.checkToken, require("./api/controllers/ApplicationController").home);
 	app.get("/home", require("./api/controllers/ApplicationController").home);
+	app.get("/todo", require("./api/controllers/ApplicationController").todo);
 
 	// FaqController
 	app.get("/faq/:lang", require("./api/controllers/FaqController").trololo_lang);

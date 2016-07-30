@@ -5,7 +5,11 @@ html
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 	body
 		if errors
-			p= errors
+			ul
+				each err in errors
+					li
+						- var ob = JSON.stringify(err)
+						#{ob}
 		form(role="form", action="/register", method="post")
 			label Email:
 			br
