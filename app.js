@@ -4,9 +4,9 @@ var config = require("./config/application"),
 	express = require("express"),
 	bodyParser = require("body-parser"),
 	knex = require("knex"),
-    http = require('http'),
-    helmet = require("helmet"),
-    path = require("path"),
+	http = require('http'),
+	helmet = require("helmet"),
+	path = require("path"),
 	expressValidator = require('express-validator'),
 	compression = require('compression'),
 	morgan = require('morgan'), 		// Logging
@@ -31,21 +31,15 @@ app.use(compression())
 app.use(morgan('dev'));
 // HTTP Security Headers
 app.use(helmet());
-// TODO
-//	* https://github.com/helmetjs/hide-powered-by
-//	* https://github.com/helmetjs/x-xss-protection
-//	* https://github.com/helmetjs/frameguard
-//	* https://github.com/helmetjs/csp
 
-app.use( auth.initialize() );
+app.use(auth.initialize());
 
-
-app.use( expressValidator( require("./config/validations") ) );
+app.use(expressValidator( require("./config/validations")));
 
 app.config = config;
 
-app.utility = {};
-app.utility.workflow = require('./utils/workflow');
+app.utils = {};
+app.utils.workflow = require('./utils/workflow');
 
 app.server = http.createServer(app);
 
@@ -115,12 +109,12 @@ app.use(require('./api/controllers/ApplicationController').http500);
 app.server.listen(app.config.port);
 app.server.on("error", function onError(error) {
 	if (error.syscall !== "listen") {
-    	throw error;
-  	}
+		throw error;
+	}
 
-  	var bind = typeof port === "string"
-    	? "Pipe " + port
-    	: "Port " + port;
+	var bind = typeof port === "string"
+		? "Pipe " + port
+		: "Port " + port;
 
 	// handle specific listen errors with friendly messages
 	switch (error.code) {
