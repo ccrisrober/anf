@@ -9,7 +9,6 @@ exports.home = function(req, res) {
 var Todo_ = require(__base + "./api/models/Todo");
 exports.todo = function(req, res) {
 	Todo_.collection().fetch().then(function(t) {
-		
 		console.log(t);
 
 		return res.render(

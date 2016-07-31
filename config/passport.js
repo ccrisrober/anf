@@ -1,9 +1,11 @@
+var jwt = require("jwt-simple");
 var passport = require("passport");
 var passportJWT = require("passport-jwt");
 var ExtractJwt = passportJWT.ExtractJwt;
 var Strategy = passportJWT.Strategy;
 
 var params = {
+	jwtSecret: "MyS3cr3tK3Y",
 	secretOrKey: "MyS3cr3tK3Y",
 	jwtFromRequest: ExtractJwt.fromAuthHeader(),
 	jwtSession: {
@@ -13,21 +15,18 @@ var params = {
 
 module.exports = function() {
 	var strategy = new Strategy(params, function(payload, done) {
-		//console.log(payload);
-
-		require("../api/models/User").forge({
-			id: payload.id
-		}).fetch()
-		.then(function(user) {
-			if (user) {
-				return done(null, {id: user.id});
-			} else {
-				return done(new Error("User not found"), null);
-			}
-		})
-		.catch(function(err) {
-			return res.json(err);
-		});
+		var User = require("../api/models/User");
+		User.findById(payload.id)
+			.then(function(user) {
+				if (user) {
+					return done(null, {id: user.id});
+				} else {
+					return done(new Error("User not found"), null);
+				}
+			})
+			.catch(function(err) {
+				return done(new Error(err), null);
+			});
 	});
 	passport.use(strategy);
 	return {
@@ -35,7 +34,10 @@ module.exports = function() {
 			return passport.initialize();
 		},
 		authenticate: function() {
-			return passport.authenticate("jwt", params.jwtSession)
+			return passport.authenticate("jwt", params.jwtSession);
+		},
+		token: function(user_id) {
+			return jwt.encode({id: user_id}, params.jwtSecret);
 		}
 	}
 };

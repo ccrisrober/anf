@@ -20,8 +20,8 @@ var User = ORM.Model.extend({
 }, {
   login: function(email, password) {
     return this.forge({
-      email: email
-      // TODO: password
+      email: email,
+      password: password
     }).fetch();
   }
 });
