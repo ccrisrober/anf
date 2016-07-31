@@ -79,3 +79,28 @@ exports.logout = function(req, res) {
 	res.json({ success: "OK" });
 };
 // TODO: https://www.npmjs.com/package/bookshelf-fields REVISAR
+
+exports.users = function(req, res) {
+	User.findAll({password: "12345678"})
+	//User.findAll({password: "12345678", "email": "ccrisrober@gmail.com"})
+	//User.findOne({email: "ccrisrober@gmail.com"})
+	//User.findOne({id: 2})
+	//User.findById(2)
+	/*User.create({
+		email: "jojo@jojo.com",
+		password: "666666666",
+		name: "Chema Alonso"
+	})*/
+	//User.destroy({id: 4})
+	/*User.update({
+		id: 500
+	}, {
+		username: "Joselito1"
+	})*/
+	.then(function(user) {
+		res.json(user);
+	})
+	.catch(function(err) {
+		res.json(err);
+	});
+}

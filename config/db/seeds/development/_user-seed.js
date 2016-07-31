@@ -11,13 +11,13 @@ exports.seed = function(knex, Promise) {
           name: "maldicion069"
         })
       ];
-      /*for(var i = 0; i < 10; i++) {
+      for(var i = 0; i < 100; i++) {
         seed.push(knex("user").insert({
           email: faker.internet.email(),
-          password: "12345678",
+          password: (i % 2 == 0)? "12345678" : "87654321",
           name: faker.name.findName()
         }));
-      }*/
+      }
       return Promise.all(seed);
     });
 };

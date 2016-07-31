@@ -9,7 +9,8 @@ exports = module.exports = function(app) {
 	app.get("/hello", require("./api/controllers/PruebasController").hello);
 
 	// UserController
-	app.get("/login", require("./api/controllers/UserController").login)
+	app.get("/users", require("./api/controllers/UserController").users);
+	app.get("/login", require("./api/controllers/UserController").login);
 	app.post("/login", require("./api/controllers/UserController").login_form);
 	app.get("/register", require("./api/controllers/UserController").register);
 	app.post("/register", require("./api/controllers/UserController").register_form);

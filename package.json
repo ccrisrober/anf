@@ -11,9 +11,11 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.0",
+    "bookshelf-crud": "^1.1.0",
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "express-validator": "^2.20.8",
+    "extend": "^3.0.0",
     "helmet": "^2.1.2",
     "jwt-simple": "^0.5.0",
     "knex": "^0.11.9",
