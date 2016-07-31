@@ -1,5 +1,7 @@
 "use strict";
 // TODO: https://www.npmjs.com/package/node-sender
+// TODO: var Server = require("./server");
+
 var config = require("./config/application"),
 	express = require("express"),
 	bodyParser = require("body-parser"),
@@ -18,38 +20,48 @@ global.__base = __dirname + '/';
 var app = express();
 var router = express.Router();
 
-app.set("view engine", "pug");
-// Re-asign views direcotry
-app.set("views", __dirname + "/resources/views");
-
-app.use( bodyParser.urlencoded({ extended: true }) );
-app.use( bodyParser.json() );
-
-// compress all requests
-app.use(compression())
-// log every request to the console
-app.use(morgan('dev'));
-// HTTP Security Headers
-app.use(helmet());
-
-app.use(auth.initialize());
-
-app.use(expressValidator( require("./config/validations")));
-
 app.config = config;
 
-app.utils = {};
-app.utils.workflow = require('./utils/workflow');
+app.auth = auth;
+
+app.utils = {
+	workflow: require('./utils/workflow')
+};
 
 app.server = http.createServer(app);
 
-// settings
-app.set("port", config.port);
 
-app.use(router);
+function configure(app) {
+	// Set view engine
+	app.set("view engine", "pug");
+	// Re-asign views directory
+	app.set("views", __dirname + "/resources/views");
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/vendor'));
+	app.use( bodyParser.urlencoded({ extended: true }) );
+	app.use( bodyParser.json() );
+
+	// Set port
+	app.set("port", config.port);
+
+	// compress all requests
+	app.use(compression())
+	// log every request to the console
+	app.use(morgan('dev'));
+	// HTTP Security Headers
+	app.use(helmet());
+	// Params validation
+	app.use(expressValidator( require("./config/validations")));
+	/// Init passport auth
+	app.use(auth.initialize());
+
+	app.use(router);
+
+	// Static files directories
+	app.use(express.static(__dirname + '/public'));
+	app.use(express.static(__dirname + '/vendor'));
+}
+
+configure(app);
 
 // Documentation route
 app.use("/doc", express.static(__dirname + "/apidoc"));
@@ -61,45 +73,6 @@ router.all('/', function (req, res, next) {
 	next();
 });
 
-// TODO: Authenticate no es el correcto D:
-app.get("/user", auth.authenticate(), function(req, res) {
-	console.log(req.user.id);
-	var User = require("./api/models/User");
-	User.findById(req.user.id)
-		.then(function(user) {
-			if (user) {
-				res.json(user.toJSON());
-			} else {
-				return res.json("User not found");
-			}
-		})
-		.catch(function(err) {
-			return res.json(err);
-		});
-});
-
-app.post("/token", function(req, res) {
-	if (req.body.email && req.body.password) {
-		var email = req.body.email;
-		var password = req.body.password;
-
-		var User = require("./api/models/User");
-		User.login(email, password)
-			.then(function(user) {
-				if(user) {
-					res.json({token: auth.token(user.id)});
-				} else {
-					res.sendStatus(401);
-				}
-			})
-			.catch(function(err) {
-				return res.json(err);
-			});
-	} else {
-		res.sendStatus(401);
-	}
-});
-
 require("./config/model");
 require("./routes")(app);
 
@@ -107,6 +80,7 @@ require("./routes")(app);
 app.use(require('./api/controllers/ApplicationController').http500);
 
 app.server.listen(app.config.port);
+
 app.server.on("error", function onError(error) {
 	if (error.syscall !== "listen") {
 		throw error;
@@ -130,6 +104,7 @@ app.server.on("error", function onError(error) {
 			throw error;
 	}
 });
+
 app.server.on("listening", function onListening() {
 	var addr = app.server.address();
 	var bind = typeof addr === "string"

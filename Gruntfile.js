@@ -102,20 +102,9 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-apidoc');
 	grunt.registerTask("server", ["apidoc:myapp", "nodemon"]);
-	grunt.registerTask("serve", ["apidoc:myapp", "nodemon"]);
+	grunt.registerTask("serve", ["nodemon"]);
 
 	grunt.loadNpmTasks('grunt-mocha-istanbul');
-
-
-
-	grunt.registerTask("kk", "knex task", function() {
-		var done = this.async();
-		grunt.log.writeln("procesing taskk...");
-		setTimeout(function() {
-			grunt.log.writeln("ALL DONE");
-			done();
-		}, 1000);
-	});
 
 	// Adding test task enabling "grunt test" command
 	grunt.registerTask('test', [  

@@ -3,6 +3,8 @@
 var policies = require(__base + "./config/policies");
 
 exports = module.exports = function(app) {
+	var auth = app.auth;
+
 	app.get("/", require("./api/controllers/PruebasController").index);
 	app.get("/todo", require("./api/controllers/PruebasController").todo);
 	app.post("/file", require("./api/controllers/PruebasController").upload);
@@ -15,6 +17,9 @@ exports = module.exports = function(app) {
 	app.get("/register", require("./api/controllers/UserController").register);
 	app.post("/register", require("./api/controllers/UserController").register_form);
 	app.get("/logout", require("./api/controllers/UserController").logout);
+
+	app.post("/token", require("./api/controllers/JWTController").token);
+	app.get("/user", app.auth.authenticate(), require("./api/controllers/JWTController").user);
 
 	app.get("/admin*", [policies.ensureAuthenticated, policies.ensureAdmin]);
 
