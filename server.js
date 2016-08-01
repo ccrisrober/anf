@@ -1,20 +1,26 @@
-// TODO: Init all in this file! ;-)
-var http = require('http'),
+"use strict";
+
+// TODO: Environment!!
+var express = require("express"),
+	http = require('http'),
 	auth = require("./config/passport")(),
 	config = require("./config/application"),
 	bodyParser = require("body-parser"),
 	expressValidator = require('express-validator'),
 	auth = require("./config/passport")();
 
-var express = require("express");
-
 var Server = (function () {
     function Server() {
     	this.app = express();
     	this.router = express.Router();
     }
+    Server.prototype.register_static_dir = function(dir) {
+		this.app.use(express.static(__dirname + dir));
+    };
+    Server.prototype.register_static_route = function(route, dir) {
+		this.app.use(route, express.static(__dirname + dir));
+    };
     Server.prototype.configure = function () {
-
 		// Set view engine
 		this.app.set("view engine", "pug");
 
@@ -50,14 +56,6 @@ var Server = (function () {
 		this.app.use( bodyParser.urlencoded({ extended: true }) );
 		this.app.use( bodyParser.json() );
 
-		// Static files directories
-		this.app.use(express.static(__dirname + '/public'));
-		this.app.use(express.static(__dirname + '/vendor'));
-
-		// Documentation route
-		this.app.use("/doc", express.static(__dirname + "/apidoc"));
-		this.app.use("/coverage", express.static(__dirname + "/coverage"));
-
 		this.app.use(this.router);
 
 		// Main route
@@ -78,6 +76,8 @@ var Server = (function () {
     	this.app.use(prefix, router);
     };
     Server.prototype.start = function () {
+    	var self = this;
+
         this.server = http.createServer(this.app);
         this.server.listen(this.app.config.port);
 
@@ -104,7 +104,7 @@ var Server = (function () {
 					throw error;
 			}
 		});
-    	var self = this;
+		
 		this.server.on("listening", function onListening() {
 			var addr = self.server.address();
 			var bind = typeof addr === "string"
@@ -115,4 +115,5 @@ var Server = (function () {
     };
     return Server;
 }());
+
 module.exports = Server;

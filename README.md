@@ -3,13 +3,13 @@ Another NodeJS Framework implemented with Express, Grunt and Knex.
 
 ## Technology
 
-| On The Server | On The Client  | Development |
-| ------------- | -------------- | ----------- |
-| Express       | Pug / Jade	 | Grunt       |
-| Knex          | jQuery   		 | ApiDoc      |
-| Bookshelf     | ReactJS		 | Mocha       |
-| 	            |  	    		 | Istanbul    |
-|				|				 | Bower	   |
+|  On The Server  |  On The Client   |  Development  |
+| --------------- | ---------------- | ------------- |
+| Express         | Pug / Jade	     | Grunt         |
+| Knex            | jQuery   		 | ApiDoc        |
+| Bookshelf       | ReactJS		     | Mocha         |
+| anf-ioc         |  	    		 | Istanbul      |
+| bookshelf-crud  |				     | Bower	     |
 
 ## Installation
 ```bash
@@ -19,7 +19,7 @@ $ npm install
 
 ## Running server
 ```bash
-$ grunt server
+$ grunt
 ```
 ## License
 MIT

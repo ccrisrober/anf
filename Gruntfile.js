@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
 		concurrent: {
 			dev: {
-				tasks: ['nodemon', 'watch'],
+				tasks: ['nodemon', "notify:server", 'watch'],
 				options: {
 					logConcurrentOutput: true
 				}
@@ -35,14 +35,14 @@ module.exports = function(grunt) {
 			options: {
 				linenos: true,
 				compress: false
-	        },
-	        files: [{
-	      		expand: true,
-	          	cwd: 'source',
-	          	src: [ '**/*.styl' ],
-	          	dest: 'build',
-	          	ext: '.css'
-	        }]
+			},
+			files: [{
+				expand: true,
+				cwd: 'source',
+				src: [ '**/*.styl' ],
+				dest: 'build',
+				ext: '.css'
+			}]
 		},
 
 		mocha_istanbul: {
@@ -82,6 +82,16 @@ module.exports = function(grunt) {
 		}
 
 
+		,
+		notify: {
+			server: {
+				options: {
+					title: "Task Complete",
+					message: 'Server is ready!'
+				}
+			}
+		}
+
 	});
 
 	grunt.loadNpmTasks('grunt-notify');	// TODO: https://github.com/dylang/grunt-notify
@@ -91,7 +101,7 @@ module.exports = function(grunt) {
 
 	// Nodemon
 	grunt.loadNpmTasks('grunt-nodemon');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.registerTask("watch", ["watch:js"]);
@@ -103,6 +113,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-apidoc');
 	grunt.registerTask("server", ["apidoc:myapp", "nodemon"]);
 	grunt.registerTask("serve", ["nodemon"]);
+
+	grunt.registerTask("foo", ["apidoc:myapp", "notify:server"]);
 
 	grunt.loadNpmTasks('grunt-mocha-istanbul');
 
