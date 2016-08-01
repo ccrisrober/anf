@@ -9,6 +9,7 @@
   "author": "maldicion069 <ccrisrober@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "anf-ioc": "^1.0.2",
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.0",
     "bookshelf-crud": "^1.1.0",

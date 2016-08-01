@@ -11,4 +11,7 @@ require("fs").readdirSync(__base + "./api/models").forEach(function(modelName) {
     modelName = modelName.replace(".js", "");
     // Register model
     ORM.model(modelName, require(__base + "./api/models/"+ modelName));
+
+
+	__ioc.$set(modelName, require(__base + "./api/models/"+ modelName));
 });
