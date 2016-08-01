@@ -8,7 +8,7 @@ Another NodeJS Framework implemented with Express, Grunt and Knex.
 | Express         | Pug / Jade	     | Grunt         |
 | Knex            | jQuery   		 | ApiDoc        |
 | Bookshelf       | ReactJS		     | Mocha         |
-| anf-ioc         |  	    		 | Istanbul      |
+| anf-ioc         | Sass 	    	 | Istanbul      |
 | bookshelf-crud  |				     | Bower	     |
 
 ## Installation

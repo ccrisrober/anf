@@ -31,20 +31,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		stylus: {
-			options: {
-				linenos: true,
-				compress: false
-			},
-			files: [{
-				expand: true,
-				cwd: 'source',
-				src: [ '**/*.styl' ],
-				dest: 'build',
-				ext: '.css'
-			}]
-		},
-
 		mocha_istanbul: {
 			coverage: {
 				src: "tests", // directory
@@ -79,25 +65,42 @@ module.exports = function(grunt) {
 			vendor: {
 				src: ["public/vendor/**"]
 			}
-		}
+		},
 
-
-		,
 		notify: {
 			server: {
 				options: {
 					title: "Task Complete",
 					message: 'Server is ready!'
 				}
+			},
+			client: {
+				options: {
+					title: "Sass Task Complete",
+					message: "CSS is ready!!"
+				}
+			}
+		},
+
+		sass: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: './resources/assets/sass',
+        			src: ['*.scss'],
+					dest: './public/css',
+					ext: '.css'
+				}]
 			}
 		}
 
 	});
 
-	grunt.loadNpmTasks('grunt-notify');	// TODO: https://github.com/dylang/grunt-notify
+	// sass
+	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.registerTask("client", ["sass", "notify:client"]);
 
-	grunt.loadNpmTasks('grunt-contrib-stylus');
-	grunt.registerTask("client", ["stylus"]);
+	grunt.loadNpmTasks('grunt-notify');	// TODO: https://github.com/dylang/grunt-notify
 
 	// Nodemon
 	grunt.loadNpmTasks('grunt-nodemon');

@@ -2,3 +2,4 @@ node_modules
 apidoc
 coverage
 vendor
+.sass-cache
