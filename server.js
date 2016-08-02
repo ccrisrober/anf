@@ -10,9 +10,15 @@ var express = require("express"),
 	auth = require("./config/passport")();
 
 var Server = (function () {
-	function Server() {
+	function Server(enforce_ssl) {
 		this.app = express();
 		this.router = express.Router();
+		if(enforce_ssl === true) {
+			var enforceSSL = require("express-enforces-ssl");
+			// TODO: Add to package.json
+			this.app.enable("trust proxy");
+			this.app.use(enforceSSL());
+		}
 	}
 	Server.prototype.register_static_dir = function(dir) {
 		this.app.use(express.static(__dirname + dir));
@@ -72,7 +78,7 @@ var Server = (function () {
 		this.app.use(version, mod_router);
 	};
 	Server.prototype.start = function () {
-		require("./_routes")(this.app);
+		require("./config/routes")(this.app);
 		
 		// Handle 500
 		this.app.use(require('./api/controllers/ApplicationController').http500);

@@ -12,7 +12,7 @@
     "anf-ioc": "^1.0.2",
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.0",
-    "bookshelf-crud": "^1.1.0",
+    "bookshelf-crud": "^1.2.1",
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "express-validator": "^2.20.8",
