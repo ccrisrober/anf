@@ -10,7 +10,6 @@ var Todo_ = require(__base + "./api/models/Todo");
 exports.todo = function(req, res) {
 	Todo_.collection().fetch().then(function(t) {
 		console.log(t);
-
 		return res.render(
 			"todo"
 		);
@@ -29,6 +28,7 @@ exports.http404 = function(req, res) {
 };
 
 exports.http500 = function(err, req, res) {
+	console.log(res);
 	res.status(500);
 	if(req.app.get("env") === "development") {
 		console.log(err.stack);

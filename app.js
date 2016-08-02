@@ -29,6 +29,12 @@ __ioc.$call(function(hello) {
 });*/
 
 server.register();
+
+server.add_api_version("/v1", require("./routes/v1"));
+server.add_api_version("/v2", require("./routes/v2"));
+//server.add_api_version("/", require("./_routes")(server.app));
 server.start();
 
 //console.log(__ioc.$data);
+
+// TODO: Add more tests

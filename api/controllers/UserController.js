@@ -81,7 +81,7 @@ exports.logout = function(req, res) {
 // TODO: https://www.npmjs.com/package/bookshelf-fields REVISAR
 
 exports.users = function(req, res) {
-	User.findAll({password: "12345678"})
+	//User.findAll({password: "12345678"})
 	//User.findAll({password: "12345678", "email": "ccrisrober@gmail.com"})
 	//User.findOne({email: "ccrisrober@gmail.com"})
 	//User.findOne({id: 2})
@@ -97,6 +97,18 @@ exports.users = function(req, res) {
 	}, {
 		username: "Joselito1"
 	})*/
+	/*User.updateOrCreate({id: 500}, {
+		email: "jcssojoxD@jojo.com",
+		password: "666666666",
+		name: "sdChemcaxD Alonso"
+	})*/
+	User.updateOrCreate({
+		id: 115
+	}, {
+		email: "jcssojoxD@jojo.com",
+		password: "666666666",
+		name: "so"
+	})
 	.then(function(user) {
 		res.json(user);
 	})

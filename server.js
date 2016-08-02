@@ -10,17 +10,17 @@ var express = require("express"),
 	auth = require("./config/passport")();
 
 var Server = (function () {
-    function Server() {
-    	this.app = express();
-    	this.router = express.Router();
-    }
-    Server.prototype.register_static_dir = function(dir) {
+	function Server() {
+		this.app = express();
+		this.router = express.Router();
+	}
+	Server.prototype.register_static_dir = function(dir) {
 		this.app.use(express.static(__dirname + dir));
-    };
-    Server.prototype.register_static_route = function(route, dir) {
+	};
+	Server.prototype.register_static_route = function(route, dir) {
 		this.app.use(route, express.static(__dirname + dir));
-    };
-    Server.prototype.configure = function () {
+	};
+	Server.prototype.configure = function () {
 		// Set view engine
 		this.app.set("view engine", "pug");
 
@@ -63,25 +63,26 @@ var Server = (function () {
 			console.log('Someone made a request!');
 			next();
 		});
-    };
-    Server.prototype.register = function() {
+	};
+	Server.prototype.register = function() {
 		require("./config/models");
 		require("./config/services");
-		require("./routes")(this.app);
-
+	};
+	Server.prototype.add_api_version = function(version, mod_router) {
+		this.app.use(version, mod_router);
+	};
+	Server.prototype.start = function () {
+		require("./_routes")(this.app);
+		
 		// Handle 500
 		this.app.use(require('./api/controllers/ApplicationController').http500);
-    };
-    Server.prototype.router = function(prefix, router) {
-    	this.app.use(prefix, router);
-    };
-    Server.prototype.start = function () {
-    	var self = this;
 
-        this.server = http.createServer(this.app);
-        this.server.listen(this.app.config.port);
+		var self = this;
 
-        this.server.on("error", function onError(error) {
+		this.server = http.createServer(this.app);
+		this.server.listen(this.app.config.port);
+
+		this.server.on("error", function onError(error) {
 			if (error.syscall !== "listen") {
 				throw error;
 			}
@@ -112,8 +113,8 @@ var Server = (function () {
 				: addr.port + " port";
 			console.log("Server is running at " + bind);
 		});
-    };
-    return Server;
+	};
+	return Server;
 }());
 
 module.exports = Server;

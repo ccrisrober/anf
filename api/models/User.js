@@ -10,9 +10,6 @@ var User = ORM.Model.extend({
   	//console.log(opts);
   	//this.on('saving', this.validateSave);
 	},
-	create: function(data, opts) {
-		return this.forge(data).save(null, opts);
-	},
 	hidden: ["password", "created_at", "updated_at"],
   todos: function() {
     return this.hasMany("todo");
