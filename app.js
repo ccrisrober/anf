@@ -34,6 +34,7 @@ function initServer() {
 	server.register_static_dir("/vendor");
 
 	server.register();
+	//console.log(__ioc._data);
 
 	server.start();
 }

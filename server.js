@@ -76,8 +76,8 @@ var Server = (function () {
 		});
 	};
 	Server.prototype.register = function() {
-		require("./config/models");
-		require("./config/services");
+		//require("./config/models");
+		//require("./config/services");
 	};
 	Server.prototype.add_api_version = function(version, mod_router) {
 		this.app.use(version, mod_router);

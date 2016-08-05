@@ -1,18 +1,19 @@
 {
-  "name": "nodeserver",
+  "name": "anf",
   "description": "",
   "main": "app.js",
   "authors": [
     "maldicion069 <ccrisrober@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/maldicion069/NodeServer",
+  "homepage": "https://github.com/maldicion069/anf",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "vendor"
   ],
   "dependencies": {
     "jquery": "^3.1.0",

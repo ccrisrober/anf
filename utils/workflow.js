@@ -1,6 +1,6 @@
 'use strict';
 
-exports = module.exports = function(req, res) {
+var workflow = function(req, res) {
 	var workflow = new (require('events').EventEmitter)();
 
 	workflow.outcome = {
@@ -29,3 +29,7 @@ exports = module.exports = function(req, res) {
 
 	return workflow;
 };
+
+__ioc.$set("workflow", workflow);
+
+exports = module.exports = workflow;

@@ -1,6 +1,13 @@
 var async = require("async");
 
 module.exports.bootstrap = function(callback) {
+	function register(done) {
+		console.log("Register");
+		require("./models");
+		require("./services");
+		require(__base + "./utils/workflow");
+		done();
+	}
 	function printHello(done) {
 		setTimeout(function() {
 			console.log("HELLO");
@@ -13,8 +20,13 @@ module.exports.bootstrap = function(callback) {
 			done();
 		}, 1);
 	}
-	async.parallel([
-		printHello,
-		printBye
+	async.series([
+		register,
+		function(cb) {
+			async.parallel([
+				printHello,
+				printBye
+			], cb)
+		}
 	], callback);
 };
