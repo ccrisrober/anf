@@ -18,6 +18,7 @@
     "express-validator": "^2.20.8",
     "extend": "^3.0.0",
     "helmet": "^2.1.2",
+    "i18n": "^0.8.3",
     "jwt-simple": "^0.5.0",
     "knex": "^0.11.9",
     "light-ioc": "^1.5.0",

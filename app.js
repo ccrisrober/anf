@@ -1,13 +1,20 @@
 "use strict";
 // TODO: https://www.npmjs.com/package/node-sender
 
+// Set base path in global system
+global.__base = __dirname + '/';
+
+var i18n = require("i18n");
+i18n.configure(require("./config/i18n").i18n);
+
+console.log(i18n.__("Welcome"));
+i18n.setLocale("es");
+console.log(i18n.__("Welcome"));
+
 var Server = require("./server");
 
 var ioc = require("light-ioc");
 global.__ioc = new ioc(true);
-
-// Set base path in global system
-global.__base = __dirname + '/';
 
 var server = new Server();
 server.configure();
