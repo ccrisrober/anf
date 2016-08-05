@@ -14,6 +14,7 @@ var Server = require("./server");
 
 var ioc = require("light-ioc");
 global.__ioc = new ioc(true);
+global._ = require("lodash");
 
 var env = process.env.NODE_ENV || "development";
 env = env.replace(/\s/g, '');
@@ -22,6 +23,8 @@ var configDatabase = require("./knexfile")[env];
 if (!configDatabase) {
     throw "Undefined environment";
 }
+
+require("./anf");
 
 function initServer() {
 	//console.log("initServer");

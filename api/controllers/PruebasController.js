@@ -12,6 +12,9 @@ module.exports = {
 	 * @apiSuccess {String} lastname  Lastname of the User.
 	 */
 	index: function(req, res) {
+		_.times(5, function(){
+			console.log("TIME");
+		});
 		__ioc.$inject("user", function(u) {
 			u.where("userid", "<", 109).fetchAll({debug: true}).then(function(users) {
 				console.log(JSON.stringify(users.toJSON()));
