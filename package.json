@@ -1,6 +1,6 @@
 {
   "name": "anf",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -30,7 +30,8 @@
     "morgan": "https://registry.npmjs.org/morgan/-/morgan-1.7.0.tgz",
     "multer": "^1.2.0",
     "mysql": "^2.11.1",
-    "node-upload": "^1.0.0",
+    "node-sender": "^2.0.4",
+    "node-upload": "^1.0.2",
     "nodemailer": "^2.5.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",

@@ -28,8 +28,9 @@ exports.index = function(req, res) {
 	});
 };
 exports.upload = function(req, res) {
-	var upload = require(__base + "./api/services/UploadService");
-	return upload.upload_images(req, res, "photo");
+	__ioc.$inject("UploadService", function(upload) {
+		return upload.upload_images(req, res, "photo");
+	});
 };
 
 exports.hello = function(req, res) {
