@@ -28,9 +28,8 @@ exports.index = function(req, res) {
 	});
 };
 exports.upload = function(req, res) {
-	// TODO: http://blog.robertonodi.me/simple-image-upload-with-express/
 	var upload = require(__base + "./api/services/UploadService");
-	return upload.upload_file(req, res, "pepe");
+	return upload.upload_images(req, res, "photo");
 };
 
 exports.hello = function(req, res) {
