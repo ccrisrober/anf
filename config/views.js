@@ -1,4 +1,7 @@
-module.exports.view = {
+module.exports.views = {
+	// View engine
 	engine: "pug",
-	layout: false
+	layout: false,
+	// Pretty html
+	pretty: true
 };

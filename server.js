@@ -28,7 +28,12 @@ var Server = (function () {
 	};
 	Server.prototype.configure = function () {
 		// Set view engine
-		this.app.set("view engine", "pug");
+		var view = require(__dirname + "/config/views").views;
+		this.app.set("view engine", view.engine || "pug");
+		this.app.set("view options", {
+			layout: view.layout || false
+		});
+		this.app.locals.pretty = view.pretty || false;
 
 		// Re-asign views directory
 		this.app.set("views", __dirname + "/resources/views");
