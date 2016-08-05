@@ -13,6 +13,7 @@ var Server = (function () {
 		this.app = express();
 		this.router = express.Router();
 		this.env = env;
+		this.shuttingDown = false;
 		if(enforce_ssl === true) {
 			var enforceSSL = require("express-enforces-ssl");
 
@@ -90,6 +91,13 @@ var Server = (function () {
 			console.log('Someone made a request!');
 			next();
 		});
+
+		/*this.app.use(function(req, res, next) {
+			if(this.shuttingDown) {
+				return;
+			}
+			next();
+		});*/
 	};
 	Server.prototype.register = function() {
 		var fs = require("fs");
@@ -147,6 +155,16 @@ var Server = (function () {
 			console.log("Server is running at " + bind);
 		});
 	};
+	Server.prototype.stop = function() {
+		var process = require("process");
+		process.on('SIGINT', function() {
+			this.shuttingDown = true;
+			server.close(function(){
+				process.exit();
+			});
+		});
+
+	}
 	return Server;
 }());
 
