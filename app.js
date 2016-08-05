@@ -17,6 +17,25 @@ var ioc = require("light-ioc");
 global.__ioc = new ioc(true);
 function initServer() {
 	console.log("initServer");
+
+	console.log(require("figlet").textSync('Anf', {
+	    font: 'Ghost',
+	    horizontalLayout: 'default',
+	    verticalLayout: 'default'
+	}));
+	
+	console.log("Version: " + require('./package.json').version);
+
+	var server = new Server();
+	server.configure();
+
+	// Static files directories
+	server.register_static_dir("/public");
+	server.register_static_dir("/vendor");
+
+	server.register();
+
+	server.start();
 }
 require("./config/bootstrap").bootstrap(initServer);
 
