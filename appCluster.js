@@ -2,7 +2,6 @@
 
 var cluster = require('cluster');
 var numCPUs = require('os').cpus().length;
-// TODO: https://www.npmjs.com/package/node-sender
 
 var Server = require("./server");
 

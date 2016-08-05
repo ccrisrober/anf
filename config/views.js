@@ -5,5 +5,8 @@ module.exports.views = {
 	//layout: false, // TODO
 	
 	// Pretty html
-	pretty: true
+	pretty: true,
+
+	// View directory
+	directory: require("process").cwd() + "/resources/views/"
 };

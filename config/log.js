@@ -1,5 +1,3 @@
-module.exports = {
-	log: {
-		level: "info"
-	}
+module.exports.log = {
+	level: "info" // TODO: unused
 };

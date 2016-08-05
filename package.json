@@ -1,10 +1,11 @@
 {
   "name": "anf",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "check_libs": "npm outdated"
+    "check_libs": "npm outdated",
+    "lock": "npm prune && npm shrinkwrap"
   },
   "author": "maldicion069 <ccrisrober@gmail.com>",
   "license": "MIT",
@@ -16,26 +17,28 @@
     "chai": "^3.5.0",
     "compression": "^1.6.2",
     "express": "^4.14.0",
+    "express-enforces-ssl": "^1.1.0",
     "express-validator": "^2.20.8",
     "extend": "^3.0.0",
     "figlet": "^1.1.2",
     "helmet": "^2.1.2",
+    "i": "^0.3.5",
     "i18n": "^0.8.3",
     "jwt-simple": "^0.5.0",
     "knex": "^0.11.9",
     "light-ioc": "^1.5.0",
-    "morgan": "^1.7.0",
-    "multer": "https://registry.npmjs.org/multer/-/multer-1.0.0.tgz",
+    "morgan": "https://registry.npmjs.org/morgan/-/morgan-1.7.0.tgz",
+    "multer": "^1.2.0",
     "mysql": "^2.11.1",
     "nodemailer": "^2.5.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
-    "pug": "^2.0.0-beta4",
-    "superagent": "^2.1.0"
+    "pug": "https://registry.npmjs.org/pug/-/pug-2.0.0-beta4.tgz"
   },
   "devDependencies": {
     "apidoc": "^0.16.1",
     "assert": "^1.4.1",
+    "chai": "^3.5.0",
     "faker": "^3.1.0",
     "grunt": "^1.0.1",
     "grunt-apidoc": "^0.11.0",
@@ -43,13 +46,15 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-env": "^0.4.4",
     "grunt-mocha-istanbul": "^5.0.1",
     "grunt-nodemon": "^0.4.2",
     "grunt-notify": "^0.4.5",
     "istanbul": "^0.4.4",
     "jshint": "^2.9.2",
     "mocha": "^3.0.1",
-    "sinon": "^1.17.5"
+    "sinon": "^1.17.5",
+    "superagent": "^2.1.0"
   },
   "engine": "node >= 0.10"
 }

@@ -1,6 +1,5 @@
 "use strict";
 
-// TODO: Environment!!
 var express = require("express"),
 	http = require('http'),
 	auth = require("./config/passport")(),
@@ -10,12 +9,13 @@ var express = require("express"),
 	auth = require("./config/passport")();
 
 var Server = (function () {
-	function Server(enforce_ssl) {
+	function Server(env, enforce_ssl) {
 		this.app = express();
 		this.router = express.Router();
+		this.env = env;
 		if(enforce_ssl === true) {
 			var enforceSSL = require("express-enforces-ssl");
-			// TODO: Add to package.json
+
 			this.app.enable("trust proxy");
 			this.app.use(enforceSSL());
 		}
@@ -26,26 +26,42 @@ var Server = (function () {
 	Server.prototype.register_static_route = function(route, dir) {
 		this.app.use(route, express.static(__dirname + dir));
 	};
-	Server.prototype.configure = function () {
-		// Set view engine
-		var view = require(__dirname + "/config/views").views;
-		this.app.set("view engine", view.engine || "pug");
+	Server.prototype.setViewEngine = function() {
+		var views = require(__dirname + "/config/views").views;
+
+		this.app.set("view engine", views.engine || "pug");
 		this.app.set("view options", {
-			layout: view.layout || false
+			layout: views.layout || false
 		});
-		this.app.locals.pretty = view.pretty || false;
+		this.app.locals.pretty = views.pretty || false;
 
 		// Re-asign views directory
-		this.app.set("views", __dirname + "/resources/views");
+		this.app.set("views", views.directory);
+	}
+	Server.prototype.configure = function () {
+
+		// Set view engine
+		this.setViewEngine();
 
 		// compress all requests
 		this.app.use(require('compression')())
 
 		// log every request to the console
 		this.app.use(require('morgan')('dev'));
+		/*this.app.use(require('express-bunyan-logger')({
+			immediate: true,
+		    name: 'logger',
+		    streams: [{
+		        level: 'info',
+		        stream: process.stdout
+		        }]
+		    }));*/
+
 
 		// HTTP Security Headers
-		this.app.use(require("helmet")());
+		if(this.env == "production") {
+			this.app.use(require("helmet")());
+		}
 
 		this.app.auth = auth;
 
@@ -62,7 +78,7 @@ var Server = (function () {
 		this.app.set("port", config.port);
 
 		// Params validation
-		this.app.use(expressValidator( require("./config/validations")));
+		this.app.use(expressValidator( require("./config/validations") ));
 
 		this.app.use( bodyParser.urlencoded({ extended: true }) );
 		this.app.use( bodyParser.json() );

@@ -6,13 +6,13 @@ var storage = multer.diskStorage({
 	filename: function (req, file, cb) {
 		cb(null, file.fieldname + Date.now() + require("path").extname(file.originalname));
 	},
-	/*onFileUploadStart: function (file) {
+	onFileUploadStart: function (file) {
 		console.log(file.originalname + ' is starting ...');
 	},
 	onFileUploadComplete: function (file) {
 		console.log(file.originalname + ' uploaded to  ' + file.path);
 	},
-	fileFilter: function (req, file, cb) {
+	/*fileFilter: function (req, file, cb) {
 		if (require("path").extension(file.originalname) !== '.jpg') {
 			return cb(new Error('Only pdfs are allowed'))
 		}

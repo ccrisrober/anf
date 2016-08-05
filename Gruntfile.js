@@ -44,7 +44,9 @@ module.exports = function(grunt) {
 					coverageFolder: "coverage",
 					mask: "./**/*.spec.js",
 					root: "api/",
-					reportFormats: ["html"]
+					reportFormats: ["html"],
+					timeout: 20000,
+					excludes: ["models"]
 				}
 			}
 		},
@@ -70,6 +72,16 @@ module.exports = function(grunt) {
 			},
 			vendor: {
 				src: ["public/vendor/**"]
+			}
+		},
+
+		env: {
+			options: {},
+			dev: {
+				NODE_ENV: "development"
+			},
+			test: {
+				NODE_ENV: "test"
 			}
 		},
 
@@ -106,7 +118,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.registerTask("client", ["sass", "notify:client"]);
 
-	grunt.loadNpmTasks('grunt-notify');	// TODO: https://github.com/dylang/grunt-notify
+	grunt.loadNpmTasks('grunt-notify');
 
 	// Nodemon
 	grunt.loadNpmTasks('grunt-nodemon');
@@ -128,9 +140,10 @@ module.exports = function(grunt) {
 	grunt.registerTask("foo", ["apidoc:myapp", "notify:server"]);
 
 	grunt.loadNpmTasks('grunt-mocha-istanbul');
+	grunt.loadNpmTasks('grunt-env');
 
-	// Adding test task enabling "grunt test" command
 	grunt.registerTask('test', [  
+		//"env:test",
 		'mocha_istanbul:coverage'
 	]);
 };
