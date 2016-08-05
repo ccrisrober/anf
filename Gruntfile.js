@@ -22,6 +22,12 @@ module.exports = function(grunt) {
 			}
 		},
 
+		nodemonCluster: {
+			dev: {
+				script: "appCluster.js"
+			}
+		},
+
 		concurrent: {
 			dev: {
 				tasks: ['nodemon', "notify:server", 'watch'],
@@ -116,6 +122,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-apidoc');
 	grunt.registerTask("server", ["apidoc:myapp", "nodemon"]);
 	grunt.registerTask("serve", ["nodemon"]);
+
+	grunt.registerTask("cluster", ["nodemonCluster"]);
 
 	grunt.registerTask("foo", ["apidoc:myapp", "notify:server"]);
 

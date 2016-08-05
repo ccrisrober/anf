@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check_libs": "npm outdated"
   },
   "author": "maldicion069 <ccrisrober@gmail.com>",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "knex": "^0.11.9",
     "light-ioc": "^1.5.0",
     "morgan": "^1.7.0",
-    "multer": "1.2.0",
+    "multer": "https://registry.npmjs.org/multer/-/multer-1.0.0.tgz",
     "mysql": "^2.11.1",
     "nodemailer": "^2.5.0",
     "nodemailer-dkim": "^1.0.4",
