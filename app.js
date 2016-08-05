@@ -15,7 +15,12 @@ var Server = require("./server");
 
 var ioc = require("light-ioc");
 global.__ioc = new ioc(true);
+function initServer() {
+	console.log("initServer");
+}
+require("./config/bootstrap").bootstrap(initServer);
 
+/**
 var server = new Server();
 server.configure();
 
@@ -32,3 +37,4 @@ server.register();
 server.add_api_version("/v1", require("./routes/v1"));
 server.add_api_version("/v2", require("./routes/v2"));
 server.start();
+/**/
