@@ -1,7 +1,9 @@
 module.exports.views = {
 	// View engine
 	engine: "pug",
-	layout: false,
+
+	//layout: false, // TODO
+	
 	// Pretty html
 	pretty: true
 };

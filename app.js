@@ -24,37 +24,28 @@ function initServer() {
 	    verticalLayout: 'default'
 	}));
 	
-	console.log("Version: " + require('./package.json').version);
-
+	console.log(" ~~~~~~~~~~~~~~~~~ Version: " + require('./package.json').version);
+	console.log(__ioc._keys().length);
+	//require("./api/services/MailService").send_mail("");
+	/**
 	var server = new Server();
 	server.configure();
 
 	// Static files directories
 	server.register_static_dir("/public");
 	server.register_static_dir("/vendor");
+	
+	// Documentation route
+	//server.register_static_route("/doc", "/apidoc");
+	//server.register_static_route("/coverage", "/coverage");
 
 	server.register();
 	//console.log(__ioc._data);
+	
+	//server.add_api_version("/v1", require("./routes/v1"));
+	//server.add_api_version("/v2", require("./routes/v2"));
 
 	server.start();
+	/**/
 }
 require("./config/bootstrap").bootstrap(initServer);
-
-/**
-var server = new Server();
-server.configure();
-
-// Static files directories
-server.register_static_dir("/public");
-server.register_static_dir("/vendor");
-
-// Documentation route
-server.register_static_route("/doc", "/apidoc");
-server.register_static_route("/coverage", "/coverage");
-
-server.register();
-
-server.add_api_version("/v1", require("./routes/v1"));
-server.add_api_version("/v2", require("./routes/v2"));
-server.start();
-/**/

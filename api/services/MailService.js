@@ -1,29 +1,51 @@
 var nodemailer = require('nodemailer');
-var dkim = require('nodemailer-dkim');
-var config = require(__base + "./config/mailer");
+ 
+// Its not a good idea to provide your credentials like this, they should come from an external source. This is only for the demo.
+var EMAIL_ACCOUNT_USER = 'your@email.address';
+var EMAIL_ACCOUNT_PASSWORD = 'your-password'
+var YOUR_NAME = 'Your Name';
+ 
+//reusable transport, look at the docs to see other service/protocol options
+var smtpTransport = nodemailer.createTransport('SMTP', {
+	service: 'Gmail',
+	auth: {
+		user: EMAIL_ACCOUNT_USER,
+		pass: EMAIL_ACCOUNT_PASSWORD
+	}
+});
 
-exports.send_email = function (email_to, email_subject, email_content) {
-    if (!email_to || !email_subject || !email_content) {
-        console.log("Invalid send_email parameters");
-    } else {
-        /*try {
-            var transporter = nodemailer.createTransport({ debug : config.debug });
-            transporter.use('stream', dkim.signer({
-                domainName: config.domainName,
-                keySelector: config.keySelector,
-                privateKey: config.privateKey
-            }));
-            transporter.sendMail({
-                from: config.from,
-                to: email_to,
-                subject: email_subject,
-                text: email_content
-            }, function (err, response) {
-                console.log(err || response);
-            });
-        } catch (e) {
-            //console.log(e);
-            console.log(config.error);
-        }*/
-    }
+// TODO: Templates (https://github.com/npm/email-templates/blob/master/enterprise-send-license.text.hbs)
+// Public method that actually sends the email
+exports.send_mail = function(fromAddress, toAddress, subject/*, next*/) {
+	var content = ViewCompiler("email", {title: "HELLO"});
+	var success = true;
+	var mailOptions = {
+		// NOTE: the fromAdress can actually be different than the email address you're sending it from. Which is good and bad I suppose. Use it wisely.
+		from: YOUR_NAME + ' <' + fromAddress + '>',
+		to: toAddress,
+		replyTo: fromAddress,
+		subject: subject,
+		html: content
+	};
+
+	// send the email!
+	smtpTransport.sendMail(mailOptions, function(error, response) {
+		if(error) {
+			console.log('[ERROR] Message NOT sent: ', error);
+			success = false;
+		}
+		else {
+			console.log('[INFO] Message Sent: ' + response.message);
+		}
+		//next(error, success);
+	});
 };
+
+function ViewCompiler(relativeTemplatePath, data) {
+	var process = require("process");
+	var absoluteTemplatePath = process.cwd() + "/config/templates/" + relativeTemplatePath + ".pug";
+	var pug = require('pug');
+	var html = pug.renderFile(absoluteTemplatePath, data);
+	console.log(html);
+	return html;
+}
