@@ -92,8 +92,14 @@ var Server = (function () {
 		});
 	};
 	Server.prototype.register = function() {
-		//require("./config/models");
-		//require("./config/services");
+		var fs = require("fs");
+		var resPath = "./config/responses";
+		var resList = fs.readdirSync(resPath);
+		resList.forEach(function(res) {
+			var resName = res.split(".")[0];
+			//console.log("Register " + resName);
+			express.response[resName] = require(resPath + "/" + res);
+		});
 	};
 	Server.prototype.add_api_version = function(version, mod_router) {
 		this.app.use(version, mod_router);

@@ -26,6 +26,10 @@ if (!configDatabase) {
 function initServer() {
 	//console.log("initServer");
 
+	//require("express").response["pepito"] = require("./config/responses/ok");
+
+	//console.log(require("express").response);
+
 	console.log(require("figlet").textSync('Anf', {
 	    font: 'Ghost',
 	    horizontalLayout: 'default',
@@ -50,8 +54,8 @@ function initServer() {
 	}
 
 	server.register();
-	//console.log(__ioc._data);
 	
+	//console.log(__ioc._data);
 	server.add_api_version("/v1", require("./routes/v1"));
 	server.add_api_version("/v2", require("./routes/v2"));
 

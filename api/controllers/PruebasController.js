@@ -11,7 +11,7 @@
  * @apiSuccess {String} lastname  Lastname of the User.
  */
 exports.index = function(req, res) {
-	__ioc.$inject("user", function(u) {
+	/*__ioc.$inject("user", function(u) {
 		u.where("userid", "<", 109).fetchAll({debug: true}).then(function(users) {
 	        console.log(JSON.stringify(users.toJSON()));
 			res.render(
@@ -25,7 +25,8 @@ exports.index = function(req, res) {
 		}).catch(function(err) {
 			res.json(err);
 		});
-	});
+	});*/
+	res.pepito();
 };
 exports.upload = function(req, res) {
 	__ioc.$inject("UploadService", function(upload) {
