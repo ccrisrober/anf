@@ -12,6 +12,7 @@
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.0",
     "bookshelf-crud": "^1.2.1",
+    "chai": "^3.5.0",
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "express-validator": "^2.20.8",
@@ -27,7 +28,8 @@
     "nodemailer-dkim": "^1.0.4",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
-    "pug": "^2.0.0-beta4"
+    "pug": "^2.0.0-beta4",
+    "superagent": "^2.1.0"
   },
   "devDependencies": {
     "apidoc": "^0.16.1",
@@ -42,6 +44,7 @@
     "grunt-mocha-istanbul": "^5.0.1",
     "grunt-nodemon": "^0.4.2",
     "grunt-notify": "^0.4.5",
+    "istanbul": "^0.4.4",
     "jshint": "^2.9.2",
     "mocha": "^3.0.1",
     "sinon": "^1.17.5"
