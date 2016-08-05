@@ -1,6 +1,5 @@
 "use strict";
 
-var User = require(__base + "./api/models/User");
 /**
  * @api {get} /user/:id Request User information
  * @apiName GetUser
@@ -12,18 +11,21 @@ var User = require(__base + "./api/models/User");
  * @apiSuccess {String} lastname  Lastname of the User.
  */
 exports.index = function(req, res) {
-	res.render(
-		"index",
-		{
-			title: "Hey listen!",
-			message: "TLOZ Ocarine of Time"
-		}
-	);
-	/*User.collection().fetch().then(function(user) {
-		res.json(user);
-	}).catch(function(err) {
-		res.json(err);
-	});*/
+	__ioc.$inject("user", function(u) {
+		u.where("userid", "<", 109).fetchAll({debug: true}).then(function(users) {
+	        console.log(JSON.stringify(users.toJSON()));
+			res.render(
+				"index",
+				{
+					title: "Hey listen!",
+					message: "TLOZ Ocarine of Time",
+					users: users.toJSON()
+				}
+			);
+		}).catch(function(err) {
+			res.json(err);
+		});
+	});
 };
 exports.upload = function(req, res) {
 	// TODO: http://blog.robertonodi.me/simple-image-upload-with-express/

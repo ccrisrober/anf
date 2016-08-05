@@ -1,12 +1,15 @@
-html  
-  head
-    title= title
-  body
-    h1= message
+html
+	head
+		title= title
+	body
+		h1= message
+		ul
+			each user in users
+				li= user.username + " -  " + user.email
 
-    #app
+		#app
 
-    script(src="react/react.js")
-    script(src="react/react-dom.js")
-    script(src="todo.js")
-    script(src="js/lol.js")
+		script(src="react/react.js")
+		script(src="react/react-dom.js")
+		script(src="todo.js")
+		script(src="js/lol.js")

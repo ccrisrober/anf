@@ -3,8 +3,8 @@
 
 var Server = require("./server");
 
-var ioc = require("anf-ioc");
-global.__ioc = new ioc();
+var ioc = require("light-ioc");
+global.__ioc = new ioc(true);
 
 // Set base path in global system
 global.__base = __dirname + '/';
