@@ -44,8 +44,10 @@ module.exports = {
 	},
 
 	todo: function(req, res) {
-		res.render(
+		/*res.render(
 			"todo"
-		);
+		);*/
+		
+		return res.ok("OK");
 	}
 };

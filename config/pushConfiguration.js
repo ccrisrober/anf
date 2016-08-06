@@ -1,4 +1,4 @@
-module.exports.push = {
+module.exports = {
 	gcm: {
 		apiKey : "GCM Api-KEY",
 		ttl    : 7200

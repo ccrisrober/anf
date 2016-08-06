@@ -27,7 +27,7 @@ exports = module.exports = function(app) {
 
 	// ApplicationController
 	//app.get("/api/user/home", policies.checkToken, require(__base + "./api/controllers/ApplicationController").home);
-	app.get("/home", require(__base + "./api/controllers/ApplicationController").home);
+	app.get("/home/:foo?", [app.auth.authenticate(), policies.lol5], require(__base + "./api/controllers/ApplicationController").home);
 	app.get("/todo", require(__base + "./api/controllers/ApplicationController").todo);
 
 	// FaqController

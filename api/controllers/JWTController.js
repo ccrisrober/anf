@@ -26,17 +26,18 @@ module.exports = {
 
 	user: function(req, res) {
 		__ioc.$inject("User", function(u) {
+			console.log(req.user);
 			u.findById(req.user.id)
-			.then(function(user) {
-				if (user) {
-					res.json(user.toJSON());
-				} else {
-					return res.json("User not found");
-				}
-			})
-			.catch(function(err) {
-				return res.json(err);
-			});
+				.then(function(user) {
+					if (user) {
+						res.json(user.toJSON());
+					} else {
+						return res.json("User not found");
+					}
+				})
+				.catch(function(err) {
+					return res.json(err);
+				});
 		});
 	}
 };

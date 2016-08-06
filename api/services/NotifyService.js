@@ -1,5 +1,5 @@
 var Sender = require('node-sender');
-var config = require(__base + "./config/pushConfiguration").push;
+var config = require(__base + "./config/pushConfiguration");
 
 var _callback = function(err, res) {
     if(err) {

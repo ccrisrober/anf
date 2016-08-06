@@ -1,9 +1,10 @@
 var nodemailer = require('nodemailer');
+
+var mailConfig = require(__base + "./config/mail");
  
-// Its not a good idea to provide your credentials like this, they should come from an external source. This is only for the demo.
-var EMAIL_ACCOUNT_USER = 'your@email.address';
-var EMAIL_ACCOUNT_PASSWORD = 'your-password'
-var YOUR_NAME = 'Your Name';
+var EMAIL_ACCOUNT_USER = mailConfig.email_account_user;
+var EMAIL_ACCOUNT_PASSWORD = mailConfig.email_account_password;
+var YOUR_NAME = mailConfig.name;
  
 //reusable transport, look at the docs to see other service/protocol options
 var smtpTransport = nodemailer.createTransport('SMTP', {

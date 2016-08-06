@@ -54,7 +54,18 @@ module.exports = function(grunt) {
 		apidoc: {
 			myapp: {
 				src: "api/controllers/",
-				dest: "apidoc/"
+				dest: "apidoc/",
+				options: {
+					packageInfo: {
+						"name": "anf",
+						"version": "0.0.1",
+						"description": "First API version",
+						"apidoc": {
+							"title": "Custom apiDoc browser title",
+							"url" : "https://mydomain.com/api/"
+						}
+					}
+				}
 			}
 		},
 

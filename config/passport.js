@@ -18,8 +18,15 @@ module.exports = function() {
 		var User = require("../api/models/User");
 		User.findById(payload.id)
 			.then(function(user) {
+				//console.log(user.toJSON());
+				var user = user.toJSON();
+				var data = {
+					id: user.userid,
+					name: user.name,
+					email: user.email
+				}
 				if (user) {
-					return done(null, {id: user.id});
+					return done(null, data);
 				} else {
 					return done(new Error("User not found"), null);
 				}
