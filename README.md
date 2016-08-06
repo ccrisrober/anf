@@ -8,8 +8,15 @@ Another NodeJS Framework implemented with Express, Grunt and Knex.
 | Express         | Pug / Jade	     | Grunt         |
 | Knex            | jQuery   		 | ApiDoc        |
 | Bookshelf       | ReactJS		     | Mocha         |
-| anf-ioc         | Sass 	    	 | Istanbul      |
-| bookshelf-crud  |				     | Bower	     |
+| light-ioc       | Sass 	    	 | Istanbul      |
+| bookshelf-crud  |	Bootstrap	     | Bower	     |
+| node-upload	  |					 | Superagent	 |
+| nodemailer	  |					 | Chai			 |
+| captains-log	  |					 | figlet		 |
+| passport		  |					 | Sinon		 |
+| passport-jwt	  |					 |				 |
+| i18n			  |					 |				 |
+|				  |					 |				 |
 
 ## Installation
 ```bash

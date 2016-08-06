@@ -5,7 +5,7 @@ var policies = require(__base + "./config/policies");
 exports = module.exports = function(app) {
 	var auth = app.auth;
 
-	app.get("/", require(__base + "./api/controllers/PruebasController").index);
+	app.get("/:foo?", require(__base + "./api/controllers/PruebasController").index);
 	app.get("/todo", require(__base + "./api/controllers/PruebasController").todo);
 	app.post("/file", require(__base + "./api/controllers/PruebasController").upload);
 	app.get("/hello", require(__base + "./api/controllers/PruebasController").hello);

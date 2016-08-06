@@ -12,7 +12,7 @@ module.exports = {
 	 * @apiSuccess {String} lastname  Lastname of the User.
 	 */
 	index: function(req, res) {
-		_.times(5, function(){
+		/*_.times(5, function(){
 			console.log("TIME");
 		});
 		__ioc.$inject("user", function(u) {
@@ -29,8 +29,13 @@ module.exports = {
 			}).catch(function(err) {
 				res.json(err);
 			});
-		});
+		});*/
 		//res.ok();
+		console.log(req.params.foo);
+		console.log(req.checkParams('foo', 'Invalid urlparam').isInt());
+		var errors = req.validationErrors();
+		console.log(errors);
+		res.ok();
 	},
 
 	upload: function(req, res) {

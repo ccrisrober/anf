@@ -27,11 +27,7 @@ if (!configDatabase) {
 require("./anf");
 
 function initServer() {
-	//console.log("initServer");
-
-	//require("express").response["pepito"] = require("./config/responses/ok");
-
-	//console.log(require("express").response);
+	//console.log("Init Server");
 
 	console.log(require("figlet").textSync('Anf', {
 	    font: 'Ghost',
