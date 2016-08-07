@@ -44,6 +44,8 @@ var Server = (function () {
 		// Set view engine
 		this.setViewEngine();
 
+		this.app.use(require('serve-favicon')(__dirname + '/public/favicon.png'));
+
 		// compress all requests
 		this.app.use(require('compression')())
 
