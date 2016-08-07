@@ -16,13 +16,9 @@ var ioc = require("light-ioc");
 global.__ioc = new ioc(true);
 global._ = require("lodash");
 
-var env = process.env.NODE_ENV || "development";
-env = env.replace(/\s/g, '');
-//console.log(env);
-var configDatabase = require("./knexfile")[env];
-if (!configDatabase) {
-    throw "Undefined environment";
-}
+var config_app = require("./config/application");
+
+var env = config_app.environment.replace(/\s/g, '');
 
 require("./anf");
 
@@ -56,18 +52,36 @@ function initServer() {
 	server.register();
 	
 	//console.log(__ioc._data);
-	server.add_api_version("/v1", "./config/routes/v1");
-	server.add_api_version("/v2", "./config/routes/v2");
+	server.add_api_version("/api/v1", "./config/routes/v1");
+	server.add_api_version("/api/v2", "./config/routes/v2");
 
 	server.start();
-
+	var table = [];
+	var routes = server.app._router.stack;
+	for (var key in routes) {
+		if (routes.hasOwnProperty(key)) {
+			var val = routes[key];
+			if(val.route) {
+				val = val.route;
+				var _o = {};
+	    		_o[val.stack[0].method]  = [val.path, val.path ]; 	
+	    		table.push(_o);
+			}		
+		}
+	}
+	console.log(table);
 	/**
+	console.log(r);
 	server.app._router.stack.forEach(function(r){
-		if (r.route && r.route.path){
-			console.log(r.route.path + " " + JSON.stringify(r.route.methods));
+		if (r.route && r.route.path && r.route.path !== "*") {
+			if(r.route.methods.get) {
+				console.log("GET\t" + r.route.path);
+			} else if(r.route.methods.post) {
+				console.log("POST\t" + r.route.path);
+			}
 		}
 	});
 	/**/
 }
-require("./config/bootstrap").bootstrap(initServer);
+require("./config/hooks").hooks(initServer);
 module.exports = server;

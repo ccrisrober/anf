@@ -104,12 +104,11 @@ var Server = (function () {
 		});*/
 	};
 	Server.prototype.register = function() {
-		var fs = require("fs");
 		var resPath = "./config/responses";
-		var resList = fs.readdirSync(resPath);
+		var resList = require("fs").readdirSync(resPath);
 		resList.forEach(function(res) {
 			var resName = res.split(".")[0];
-			//console.log("Register " + resName);
+			console.log("Register " + resName);
 			express.response[resName] = require(resPath + "/" + res);
 		});
 	};
@@ -117,7 +116,7 @@ var Server = (function () {
 		this.app.use(version, require(mod_route));
 	};
 	Server.prototype.start = function () {
-		require("./config/routes")(this.app);
+		//require("./config/routes")(this.app);
 		
 		// Handle 500
 		this.app.use(require('./api/controllers/ApplicationController').http500);

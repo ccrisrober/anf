@@ -2,8 +2,8 @@ var NodeUpload = require("node-upload");
 
 __ioc.$singleton("upload_image", function() {
 	console.log("UPD");
-	return new NodeUpload(function() {
-		return "PEPE" + Math.random();
+	return new NodeUpload(function(file) {
+		return file.fieldname + '-' + Date.now();
 	}, "./public/uploads/");
 });
 

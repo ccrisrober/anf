@@ -1,6 +1,6 @@
 var async = require("async");
 
-module.exports.bootstrap = function(callback) {
+module.exports.hooks = function(callback) {
 	function register(done) {
 		var ORM = require(__base + "./config/database.js");
 		ORM.plugin("visibility");

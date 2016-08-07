@@ -121,6 +121,28 @@ module.exports = function(grunt) {
 					ext: '.css'
 				}]
 			}
+		},
+		knex: {
+			file: process.cwd() + "/knexfile.js",
+
+
+			config: {
+				development: {
+					client: 'mysql',
+					connection: {
+						host: "127.0.0.1",
+						database: "demo",
+						user: "root",
+						password: ""
+					},
+					migrations: {
+						directory: __dirname + '/config/db/migrations'
+					},
+					seeds: {
+						directory: __dirname + '/config/db/seeds/development'
+					}
+				}
+			}
 		}
 	});
 
@@ -205,4 +227,8 @@ module.exports = function(grunt) {
 		server.stop();
 		done(true);
 	});
+
+	// TODO: No funciona
+	//grunt.loadNpmTasks('grunt-knex');
+
 };

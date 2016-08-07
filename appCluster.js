@@ -11,7 +11,6 @@ global.__ioc = new ioc(true);
 // Set base path in global system
 global.__base = __dirname + '/';
 
-
 function initServer() {
 	if (cluster.isMaster) {
 		console.log('Fork %s worker(s) from master', numCPUs);
@@ -53,4 +52,4 @@ function initServer() {
 		server.start();
 	}
 }
-require("./config/bootstrap").bootstrap(initServer);
+require("./config/hooks").hooks(initServer);
