@@ -122,7 +122,6 @@ module.exports = function(grunt) {
 				}]
 			}
 		}
-
 	});
 
 	// sass
@@ -157,4 +156,53 @@ module.exports = function(grunt) {
 		//"env:test",
 		'mocha_istanbul:coverage'
 	]);
+
+	grunt.registerTask('benchmark', 'A sample task that logs stuff.', function(iterations) {
+		var done = this.async();
+		if (arguments.length === 0) {
+			iterations = 1000;
+		}
+		console.log(iterations);
+		
+		var siege = require("siege");
+		var config = require(process.cwd() + '/config/application');
+		
+		siege()
+			.on(config.port)
+			.for(iterations).times
+			.get('/')
+			.attack()
+	});
+
+	grunt.registerTask('benchmark2', 'A sample task that logs stuff.', function(iterations) {
+		var done = this.async();
+		if (arguments.length === 0) {
+			iterations = 1000;
+		}
+		console.log(iterations);
+		
+		var siege = require("siege");
+		var config = require(process.cwd() + '/config/application');
+		
+		siege()
+			.on(config.port)
+			.concurrent(iterations)
+			.get('/')
+			.attack()
+	});
+	grunt.registerTask("routes", "", function() {
+		var done = this.async();
+		var server = require("./app");
+		server.app._router.stack.forEach(function(r) {
+			if (r.route && r.route.path && r.route.path !== "*") {
+				if(r.route.methods.get) {
+					console.log("GET\t" + r.route.path);
+				} else if(r.route.methods.post) {
+					console.log("POST\t" + r.route.path);
+				}
+			}
+		});
+		server.stop();
+		done(true);
+	});
 };

@@ -1,6 +1,6 @@
 {
   "name": "anf",
-  "version": "1.2.5",
+  "version": "1.3.2",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -15,8 +15,9 @@
     "bookshelf": "^0.10.0",
     "bookshelf-crud": "^1.2.1",
     "captains-log": "^1.0.0",
-    "chai": "^3.5.0",
     "compression": "^1.6.2",
+    "ejs": "^2.5.1",
+    "email-renderer": "^1.0.1",
     "express": "^4.14.0",
     "express-enforces-ssl": "^1.1.0",
     "express-validator": "^2.20.8",
@@ -32,7 +33,7 @@
     "multer": "^1.2.0",
     "mysql": "^2.11.1",
     "node-sender": "^2.0.4",
-    "node-upload": "^1.0.2",
+    "node-upload": "^2.0.0",
     "nodemailer": "^2.5.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
@@ -56,6 +57,7 @@
     "istanbul": "^0.4.4",
     "jshint": "^2.9.2",
     "mocha": "^3.0.1",
+    "siege": "^0.2.0",
     "sinon": "^1.17.5",
     "superagent": "^2.1.0"
   },

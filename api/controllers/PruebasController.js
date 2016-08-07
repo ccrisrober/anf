@@ -14,10 +14,11 @@ module.exports = {
 	index: function(req, res) {
 		/*_.times(5, function(){
 			console.log("TIME");
-		});
+		});*/
 		__ioc.$inject("user", function(u) {
-			u.where("userid", "<", 109).fetchAll({debug: true}).then(function(users) {
-				console.log(JSON.stringify(users.toJSON()));
+			//u.where("userid", "<", 109).fetchAll({debug: true}).then(function(users) {
+			u.where("userid", "<", 109).fetchAll().then(function(users) {
+				//console.log(JSON.stringify(users.toJSON()));
 				res.render(
 					"index",
 					{
@@ -29,13 +30,13 @@ module.exports = {
 			}).catch(function(err) {
 				res.json(err);
 			});
-		});*/
+		});
 		//res.ok();
-		console.log(req.params.foo);
+		/*console.log(req.params.foo);
 		console.log(req.checkParams('foo', 'Invalid urlparam').isInt());
 		var errors = req.validationErrors();
 		console.log(errors);
-		res.ok();
+		res.ok();*/
 	},
 
 	upload: function(req, res) {

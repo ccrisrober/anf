@@ -26,7 +26,7 @@ module.exports.bootstrap = function(callback) {
 			__ioc.$set(serviceName, require(__base + "./api/services/"+ serviceName));
 		});
 
-		require(__base + "./utils/workflow");
+		require(__base + "./config/utils/workflow");
 		done();
 	}
 	function printHello(done) {

@@ -1,7 +1,21 @@
-var upload = require("node-upload");
+var NodeUpload = require("node-upload");
+
+__ioc.$singleton("upload_image", function() {
+	console.log("UPD");
+	return new NodeUpload(function() {
+		return "PEPE" + Math.random();
+	}, "./public/uploads/");
+});
+
 exports.upload_image = function(req, res, field_name) {
-	return upload.upload_file(req, res, field_name, [".png", ".jpg", ".jpeg", ".gif"]);
+	return __ioc.$invoke(["upload_image"], function(upload) {
+		return upload.upload_file(req, res, field_name, ["png", ".jpg", "jpeg", ".gif"]);
+	});
 };
 exports.upload_images = function(req, res, field_name) {
-	return upload.upload_array_files(req, res, field_name, [".png", ".jpg", ".jpeg", ".gif"]);
+	return __ioc.$invoke(["upload_image"], function(upload) {
+		return upload.upload_array_files(req, res, field_name, [".png", "jpg", "jpeg", "gif"], {
+			files: 4
+		});
+	});
 };

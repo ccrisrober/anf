@@ -69,9 +69,11 @@ var Server = (function () {
 		/// Init passport auth
 		this.app.use(this.app.auth.initialize());
 
+		/**
 		this.app.utils = {
 			workflow: require('./utils/workflow')
 		};
+		/**/
 
 		this.app.config = config;
 
@@ -109,8 +111,8 @@ var Server = (function () {
 			express.response[resName] = require(resPath + "/" + res);
 		});
 	};
-	Server.prototype.add_api_version = function(version, mod_router) {
-		this.app.use(version, mod_router);
+	Server.prototype.add_api_version = function(version, mod_route) {
+		this.app.use(version, require(mod_route));
 	};
 	Server.prototype.start = function () {
 		require("./config/routes")(this.app);

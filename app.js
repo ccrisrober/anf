@@ -26,6 +26,7 @@ if (!configDatabase) {
 
 require("./anf");
 
+var server;
 function initServer() {
 	//console.log("Init Server");
 
@@ -39,7 +40,7 @@ function initServer() {
 	//console.log(__ioc._keys().length);
 	
 	/**/
-	var server = new Server(env, false);
+	server = new Server(env, false);
 	server.configure();
 
 	// Static files directories
@@ -55,10 +56,18 @@ function initServer() {
 	server.register();
 	
 	//console.log(__ioc._data);
-	server.add_api_version("/v1", require("./routes/v1"));
-	server.add_api_version("/v2", require("./routes/v2"));
+	server.add_api_version("/v1", "./config/routes/v1");
+	server.add_api_version("/v2", "./config/routes/v2");
 
 	server.start();
+
+	/**
+	server.app._router.stack.forEach(function(r){
+		if (r.route && r.route.path){
+			console.log(r.route.path + " " + JSON.stringify(r.route.methods));
+		}
+	});
 	/**/
 }
 require("./config/bootstrap").bootstrap(initServer);
+module.exports = server;
