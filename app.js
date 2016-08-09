@@ -1,5 +1,8 @@
 "use strict";
 
+// TODO: http://thejackalofjavascript.com/list-all-rest-endpoints/
+// TODO: CONSTANTES
+
 // Set base path in global system
 global.__base = __dirname + '/';
 
@@ -18,7 +21,7 @@ global._ = require("lodash");
 
 var config_app = require("./config/application");
 
-var env = config_app.environment.replace(/\s/g, '');
+var env = config_app.environment;
 
 require("./anf");
 
@@ -40,8 +43,8 @@ function initServer() {
 	server.configure();
 
 	// Static files directories
-	server.register_static_dir("/public");
-	server.register_static_dir("/vendor");
+	//server.register_static_dir("/public");
+	//server.register_static_dir("/vendor");
 	
 	// Documentation route
 	if(env === "development") {
@@ -52,32 +55,23 @@ function initServer() {
 	server.register();
 	
 	//console.log(__ioc._data);
-	server.add_api_version("/api/v1", "./config/routes/v1");
-	server.add_api_version("/api/v2", "./config/routes/v2");
+	//server.add_api_version("/api/v1", "./config/routes/v1");
+	//server.add_api_version("/api/v2", "./config/routes/v2");
 
 	server.start();
-	var table = [];
-	var routes = server.app._router.stack;
-	for (var key in routes) {
-		if (routes.hasOwnProperty(key)) {
-			var val = routes[key];
-			if(val.route) {
-				val = val.route;
-				var _o = {};
-	    		_o[val.stack[0].method]  = [val.path, val.path ]; 	
-	    		table.push(_o);
-			}		
-		}
-	}
-	console.log(table);
-	/**
-	console.log(r);
-	server.app._router.stack.forEach(function(r){
+	
+	server.app._router.stack.forEach(function(r) {
 		if (r.route && r.route.path && r.route.path !== "*") {
 			if(r.route.methods.get) {
 				console.log("GET\t" + r.route.path);
 			} else if(r.route.methods.post) {
 				console.log("POST\t" + r.route.path);
+			} else if(r.route.methods.put) {
+				console.log("PUT\t" + r.route.path);
+			} else if(r.route.methods.delete) {
+				console.log("DELETE\t" + r.route.path);
+			} else if(r.route.methods.head) {
+				console.log("HEAD\t" + r.route.path);
 			}
 		}
 	});

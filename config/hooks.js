@@ -2,6 +2,12 @@ var async = require("async");
 
 module.exports.hooks = function(callback) {
 	function register(done) {
+
+		var constants = require("./constants").constants;
+		Object.keys(constants).forEach(function(key) {
+			__ioc.$constant(key, constants[key]);
+		});
+
 		var ORM = require(__base + "./config/database.js");
 		ORM.plugin("visibility");
 		ORM.plugin("registry");

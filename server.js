@@ -113,10 +113,29 @@ var Server = (function () {
 		});
 	};
 	Server.prototype.add_api_version = function(version, mod_route) {
-		this.app.use(version, require(mod_route));
+		//this.app.use(version, require(mod_route));
+		require(mod_route)(version, this.app);
 	};
 	Server.prototype.start = function () {
-		//require("./config/routes")(this.app);
+
+		// Read dir to get all files into it.
+	    // In this case you can read sync because this 
+	    // script just runs once ( when nodejs starts ).
+	    var routes = require("fs").readdirSync( './config/routes/' );
+
+	    var app = this.app;
+		// Travel all private routes files.
+    	routes.forEach( function( routeFile ) {
+    		if(routeFile[0] === "_") return; // Return same has continue in forEach loops
+	        // Require and execute route module.
+	        var namespace = routeFile.split(".")[0];
+	        require( './config/routes/' + routeFile )( "/api/" + namespace, app );
+    	});
+
+    	//require("./config/routes/v1")("/api/v1", this.app);
+    	//require("./config/routes/v2")("/api/v2", this.app);
+
+		require("./config/routes")(this.app);
 		
 		// Handle 500
 		this.app.use(require('./api/controllers/ApplicationController').http500);
