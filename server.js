@@ -95,12 +95,6 @@ var Server = (function () {
 
 		this.app.use(this.router);
 
-		// Main route
-		this.router.all('*', function (req, res, next) {  
-			console.log('Someone made a request!');
-			next();
-		});
-
 		/*this.app.use(function(req, res, next) {
 			if(this.shuttingDown) {
 				return;
@@ -112,6 +106,12 @@ var Server = (function () {
 		this.app.use(corsFn);
 	}
 	Server.prototype.register = function() {
+		// Main route
+		this.router.all('*', function (req, res, next) {  
+			console.log('Someone made a request!');
+			next();
+		});
+		
 		var resPath = "./config/responses";
 		var resList = require("fs").readdirSync(resPath);
 		resList.forEach(function(res) {
