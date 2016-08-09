@@ -3,3 +3,4 @@ apidoc
 coverage
 vendor
 .sass-cache
+.vscode

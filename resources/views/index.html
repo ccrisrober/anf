@@ -34,9 +34,29 @@
 					</div>
 				</div>
 			</div>
+			<hr />
+			<div class="row">
+				<div class="col-md-12">
+					<div ng-app="anfApp" ng-controller="HomeController"> 
+						<form novalidate>
+							Email:<br>
+							<input type="text" ng-model="user.email"><br>
+							Password:<br>
+							<input type="text" ng-model="user.password">
+							<br><br>
+							<button ng-click="login(user)">LOGIN</button>
+						</form>
+						<p>TOKEN: {{ token }}</p>
+						<p>ERROR: {{ err }}</p>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<script src="jquery/dist/jquery.min.js"></script>
 		<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<script src="angular/angular.min.js"></script>
+		<script src="js/angujs.js"></script>
 	</body>
 </html>
