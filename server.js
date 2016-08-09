@@ -8,6 +8,8 @@ var express = require("express"),
 	expressValidator = require('express-validator'),
 	auth = require("./config/passport")();
 
+var anf = require("./anf");	// TODO: Move to globals!
+
 var Server = (function () {
 	function Server(env, enforce_ssl) {
 		this.app = express();
@@ -29,15 +31,18 @@ var Server = (function () {
 	};
 	Server.prototype.setViewEngine = function() {
 		var views = require(__dirname + "/config/views").views;
+		if(views.enabled) {
+			this.app.set("view engine", views.engine || "pug");
+			this.app.set("view options", {
+				layout: views.layout || false
+			});
+			this.app.locals.pretty = views.pretty || false;
 
-		this.app.set("view engine", views.engine || "pug");
-		this.app.set("view options", {
-			layout: views.layout || false
-		});
-		this.app.locals.pretty = views.pretty || false;
-
-		// Re-asign views directory
-		this.app.set("views", views.directory);
+			// Re-asign views directory
+			this.app.set("views", views.directory);
+		} else {
+			anf.log.warn("Views disabled");
+		}
 	}
 	Server.prototype.configure = function () {
 

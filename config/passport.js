@@ -19,12 +19,14 @@ module.exports = function() {
 		User.findById(payload.id)
 			.then(function(user) {
 				//console.log(user.toJSON());
-				var user = user.toJSON();
+				/*var user = user.toJSON();
 				var data = {
 					id: user.userid,
 					name: user.name,
-					email: user.email
-				}
+					email: user.email,
+					role: user.role
+				}*/
+				data = user;
 				if (user) {
 					return done(null, data);
 				} else {

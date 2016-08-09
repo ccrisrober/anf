@@ -20,6 +20,17 @@ var User = ORM.Model.extend({
       email: email,
       password: password
     }).fetch();
+  },
+  canPlayRoleOf: function(role) {
+    console.log(role);
+    console.log(this.roles);
+    if(role == "admin") { // && this.roles.admin) {
+      return true;
+    }
+    if(role == "user") { // && this.roles.user) {
+      return true;
+    }
+    return false;
   }
 });
 

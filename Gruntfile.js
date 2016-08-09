@@ -221,6 +221,12 @@ module.exports = function(grunt) {
 					console.log("GET\t" + r.route.path);
 				} else if(r.route.methods.post) {
 					console.log("POST\t" + r.route.path);
+				} else if(r.route.methods.put) {
+					console.log("PUT\t" + r.route.path);
+				} else if(r.route.methods.delete) {
+					console.log("DELETE\t" + r.route.path);
+				} else if(r.route.methods.head) {
+					console.log("HEAD\t" + r.route.path);
 				}
 			}
 		});

@@ -1,4 +1,7 @@
 module.exports.views = {
+	// Views module enabled
+	enabled: true,
+
 	// View engine
 	engine: "pug",
 

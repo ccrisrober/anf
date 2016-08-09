@@ -1,6 +1,24 @@
 "use strict";
+var Todo_ = require(__base + "./api/models/Todo");
 
 module.exports = {
+	home: function(req, res) {
+		return res.render(
+			"home"
+		);
+	},
+
+	todo: function(req, res) {
+		Todo_.collection().fetch().then(function(t) {
+			console.log(t);
+			return res.render(
+				"todo"
+			);
+		}).catch(function(err) {
+			res.json(err);
+		});
+	},
+
 	// TODO: Mover a otro sitio
 	http404: function(req, res) {
 		res.status(404);

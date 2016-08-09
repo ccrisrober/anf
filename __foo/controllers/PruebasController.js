@@ -12,10 +12,11 @@ module.exports = {
 	 * @apiSuccess {String} lastname  Lastname of the User.
 	 */
 	index: function(req, res) {
+		res.htmlFile("index.html");
 		/*_.times(5, function(){
 			console.log("TIME");
 		});*/
-		__ioc.$inject("user", function(u) {
+		/*__ioc.$inject("user", function(u) {
 			//u.where("userid", "<", 109).fetchAll({debug: true}).then(function(users) {
 			u.where("userid", "<", 109).fetchAll().then(function(users) {
 				//console.log(JSON.stringify(users.toJSON()));
@@ -30,7 +31,7 @@ module.exports = {
 			}).catch(function(err) {
 				res.json(err);
 			});
-		});
+		});*/
 		//res.ok();
 		/*console.log(req.params.foo);
 		console.log(req.checkParams('foo', 'Invalid urlparam').isInt());

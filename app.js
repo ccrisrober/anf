@@ -43,8 +43,8 @@ function initServer() {
 	server.configure();
 
 	// Static files directories
-	//server.register_static_dir("/public");
-	//server.register_static_dir("/vendor");
+	server.register_static_dir("/public");
+	server.register_static_dir("/vendor");
 	
 	// Documentation route
 	if(env === "development") {
@@ -60,21 +60,6 @@ function initServer() {
 
 	server.start();
 	
-	server.app._router.stack.forEach(function(r) {
-		if (r.route && r.route.path && r.route.path !== "*") {
-			if(r.route.methods.get) {
-				console.log("GET\t" + r.route.path);
-			} else if(r.route.methods.post) {
-				console.log("POST\t" + r.route.path);
-			} else if(r.route.methods.put) {
-				console.log("PUT\t" + r.route.path);
-			} else if(r.route.methods.delete) {
-				console.log("DELETE\t" + r.route.path);
-			} else if(r.route.methods.head) {
-				console.log("HEAD\t" + r.route.path);
-			}
-		}
-	});
 	/**/
 }
 require("./config/hooks").hooks(initServer);
