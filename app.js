@@ -55,13 +55,13 @@ function initServer() {
 	
 	// Documentation route
 	//if(env === "development") {
-	//	server.register_static_route("/doc", "/apidoc");
-	//	server.register_static_route("/coverage", "/coverage");
+		server.register_static_route("/doc", "/apidoc");
+		server.register_static_route("/coverage", "/coverage");
 	//}
 
 	server.register();
 
-	server.setCors(handleCors);
+	//server.setCors(handleCors);
 	
 	//console.log(__ioc._data);
 	//server.add_api_version("/api/v1", "./config/routes/v1");

@@ -22,7 +22,11 @@ var User = ORM.Model.extend({
     }).fetch();
   },
   canPlayRoleOf: function(role, user) {
-    if(user.attributes.role == role) { // && this.roles.admin) {
+    // Admin has access to user zone
+    if(role === "user" && (user.attributes.role === "user" || user.attributes.role === "admin")) {
+      return true;
+    }
+    if(user.attributes.role === role) { // && this.roles.admin) {
       return true;
     }
     return false;
