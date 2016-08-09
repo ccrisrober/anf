@@ -47,10 +47,10 @@ function initServer() {
 	server.register_static_dir("/vendor");
 	
 	// Documentation route
-	if(env === "development") {
-		server.register_static_route("/doc", "/apidoc");
-		server.register_static_route("/coverage", "/coverage");
-	}
+	//if(env === "development") {
+	//	server.register_static_route("/doc", "/apidoc");
+	//	server.register_static_route("/coverage", "/coverage");
+	//}
 
 	server.register();
 	

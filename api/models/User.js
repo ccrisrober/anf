@@ -21,13 +21,8 @@ var User = ORM.Model.extend({
       password: password
     }).fetch();
   },
-  canPlayRoleOf: function(role) {
-    console.log(role);
-    console.log(this.roles);
-    if(role == "admin") { // && this.roles.admin) {
-      return true;
-    }
-    if(role == "user") { // && this.roles.user) {
+  canPlayRoleOf: function(role, user) {
+    if(user.attributes.role == role) { // && this.roles.admin) {
       return true;
     }
     return false;

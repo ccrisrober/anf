@@ -215,7 +215,7 @@ module.exports = function(grunt) {
 	grunt.registerTask("routes", "", function() {
 		var done = this.async();
 		var server = require("./app");
-		server.app._router.stack.forEach(function(r) {
+		/*server.app._router.stack.forEach(function(r) {
 			if (r.route && r.route.path && r.route.path !== "*") {
 				if(r.route.methods.get) {
 					console.log("GET\t" + r.route.path);
@@ -229,7 +229,31 @@ module.exports = function(grunt) {
 					console.log("HEAD\t" + r.route.path);
 				}
 			}
-		});
+		});*/
+		var Table = require('cli-table');
+		var table = new Table({ head: ["", "Name", "Path"] });
+		var routes = server.app._router.stack;
+		console.log('\n********************************************');
+		console.log('\t\ANF routes');
+		console.log('********************************************\n');
+		for (var key in routes) {
+			if (routes.hasOwnProperty(key)) {
+				var val = routes[key];
+				if(val.route) {
+					//console.log(JSON.stringify(val, null, 4));
+					//for(var i = 0; i < val.route.stack.length - 1; i++) {
+					//	console.log(JSON.stringify(val.route.stack[i], null, 4));
+					//}
+					val = val.route;
+					var _o = {};
+					_o[val.stack[0].method.toUpperCase()]  = [val.path, val.path ]; 	
+					table.push(_o);
+				}		
+			}
+		}
+
+		console.log(table.toString());
+
 		server.stop();
 		done(true);
 	});

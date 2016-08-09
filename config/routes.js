@@ -10,7 +10,8 @@ exports = module.exports = function(app) {
 
 	app.post("/login", require(__base + "./api/controllers/JWTController").loginJWT);
 	app.post("/register", require(__base + "./api/controllers/JWTController").register);
-	app.get("/user", policies.authenticate(), require(__base + "./api/controllers/JWTController").getUser);
+	app.get("/user", policies.authenticate(), 
+		require(__base + "./api/controllers/JWTController").getUser);
 	app.get("/role", [policies.authenticate()], function(req, res) {
 		return res.json(req.user);
 	});
