@@ -108,6 +108,9 @@ var Server = (function () {
 			next();
 		});*/
 	};
+	Server.prototype.setCors = function(corsFn) {
+		this.app.use(corsFn);
+	}
 	Server.prototype.register = function() {
 		var resPath = "./config/responses";
 		var resList = require("fs").readdirSync(resPath);

@@ -25,6 +25,13 @@ var env = config_app.environment;
 
 require("./anf");
 
+// CORS
+var handleCors = function(req, res, next) {
+  	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+};
+
 var server;
 function initServer() {
 	//console.log("Init Server");
@@ -53,6 +60,8 @@ function initServer() {
 	//}
 
 	server.register();
+
+	server.setCors(handleCors);
 	
 	//console.log(__ioc._data);
 	//server.add_api_version("/api/v1", "./config/routes/v1");
