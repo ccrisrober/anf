@@ -45,7 +45,7 @@ exports = module.exports = function(app) {
 		require(__base + "./api/controllers/CategoryController").index);
 	app.post("/category", 
 		require(__base + "./api/controllers/CategoryController").create);
-	app.get("/category/:id", 
+	app.get(["/category/:id", "/categories/:id"], 
 		require(__base + "./api/controllers/CategoryController").get);
 	app.put("/category/:id", 
 		require(__base + "./api/controllers/CategoryController").update);

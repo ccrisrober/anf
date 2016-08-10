@@ -27,9 +27,9 @@ function createController(args, inject) {
 	});
 
 	str += '\n};';
-	console.log(str);
+	//console.log(str);
 
-	/**
+	/**/
 	var fs = require("fs");
 	fs.writeFile("api/controllers/" + capitalizeFirstLetter(name) + "Controller.js", str, function(err) {
 		if(err) {

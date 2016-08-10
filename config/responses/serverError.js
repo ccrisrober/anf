@@ -1,4 +1,4 @@
-module.exports = function(extra){
+module.exports = function(extra) {
 	// Set status code
 	this.status(500);
 	this.send({
