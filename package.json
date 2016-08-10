@@ -1,6 +1,6 @@
 {
   "name": "anf",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -39,7 +39,8 @@
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
     "pug": "https://registry.npmjs.org/pug/-/pug-2.0.0-beta4.tgz",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "apidoc": "^0.16.1",
