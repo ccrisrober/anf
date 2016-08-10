@@ -27,6 +27,7 @@ exports = module.exports = function(app) {
 		return res.json(req.user);
 	});
 
+	// TODO
 	app.post("/addtodo", [policies.authenticate()], 
 		require(__base + "./api/controllers/TodoController").add);
 
@@ -38,6 +39,18 @@ exports = module.exports = function(app) {
 
 	app.put("/todo/:id", [policies.authenticate()], 
 		require(__base + "./api/controllers/TodoController").edit);
+
+	// CATEGORY
+	app.get("/categories", 
+		require(__base + "./api/controllers/CategoryController").index);
+	app.post("/category", 
+		require(__base + "./api/controllers/CategoryController").create);
+	app.get("/category/:id", 
+		require(__base + "./api/controllers/CategoryController").get);
+	app.put("/category/:id", 
+		require(__base + "./api/controllers/CategoryController").update);
+	app.delete("/category/:id", 
+		require(__base + "./api/controllers/CategoryController").destroy);
 
 	//route not found
 	app.all('*', require(__base + "./api/controllers/ApplicationController").http404);

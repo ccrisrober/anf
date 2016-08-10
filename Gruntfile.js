@@ -123,7 +123,7 @@ module.exports = function(grunt) {
 			}
 		},
 		knex: {
-			file: process.cwd() + "/knexfile.js",
+			file: process.cwd() + "/config/__knexfile.js"/*,
 
 
 			config: {
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
 						directory: __dirname + '/config/db/seeds/development'
 					}
 				}
-			}
+			}*/
 		}
 	});
 
@@ -259,6 +259,6 @@ module.exports = function(grunt) {
 	});
 
 	// TODO: No funciona
-	//grunt.loadNpmTasks('grunt-knex');
+	grunt.loadNpmTasks('grunt-knex');
 
 };
