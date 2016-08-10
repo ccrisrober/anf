@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
           name: "maldicion069"
         })
       ];
-      for(var i = 0; i < 2; i++) {
+      for(var i = 0; i < 4; i++) {
         seed.push(knex("user").insert({
           email: faker.internet.email(),
           password: (i % 2 == 0)? "12345678" : "87654321",

@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
 		table.string('title');
 		table.string('slug');
 		table.string('html');
+		//table.integer('user_id').unsigned();
 		table.integer('user_id').unsigned().references('userid').inTable('user'); 
 	});
 };
