@@ -9,7 +9,7 @@ describe('The service MyFirstService', function() {
     	assert.equal(1, result[0]);
   	});
 });
-
+/*
 var PruebasController = require(__base + "./api/controllers/PruebasController"),  
     sinon = require('sinon'),
     assert = require('assert');
@@ -33,3 +33,4 @@ describe('The Hello Controller', function() {
     });
   });
 });
+*/

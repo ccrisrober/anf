@@ -6,7 +6,7 @@ require('./User');
 var Todo = ORM.Model.extend({
 	tableName: "todo",
 	user: function() {
-		return this.belongsTo("User");
+		return this.belongsTo("User", "user_id");
 	}
 });
 

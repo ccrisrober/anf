@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.0.1",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.0",
     "bookshelf-crud": "^1.2.1",

@@ -27,6 +27,18 @@ exports = module.exports = function(app) {
 		return res.json(req.user);
 	});
 
+	app.post("/addtodo", [policies.authenticate()], 
+		require(__base + "./api/controllers/TodoController").add);
+
+	app.get("/todos", [policies.authenticate()], 
+		require(__base + "./api/controllers/TodoController").get);
+
+	app.get("/todo/:id", [policies.authenticate()], 
+		require(__base + "./api/controllers/TodoController").show);
+
+	app.put("/todo/:id", [policies.authenticate()], 
+		require(__base + "./api/controllers/TodoController").edit);
+
 	//route not found
 	app.all('*', require(__base + "./api/controllers/ApplicationController").http404);
 };

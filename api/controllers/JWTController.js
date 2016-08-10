@@ -138,17 +138,18 @@ module.exports = {
 			var password = req.body.password;
 			var name = req.body.name;
 			__ioc.$inject("User", function(u) {
-				u.create({
-					email: email,
-					password: password,
-					name: name
-				})
-				.then(function(user) {
-					res.success(true, "User created");
-				})
-				.catch(function(err) {
-					res.json(err);
-				});
+				u
+					.create({
+						email: email,
+						password: password,
+						name: name
+					})
+					.then(function(user) {
+						res.success(true, "User created");
+					})
+					.catch(function(err) {
+						res.json(err);
+					});
 			});
 		};
 	},
