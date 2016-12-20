@@ -1,6 +1,6 @@
 {
   "name": "anf",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -60,6 +60,7 @@
     "grunt-nodemon": "^0.4.2",
     "grunt-notify": "^0.4.5",
     "istanbul": "^0.4.4",
+    "jenkins": "^0.18.0",
     "jshint": "^2.9.2",
     "mocha": "^3.0.1",
     "siege": "^0.2.0",
